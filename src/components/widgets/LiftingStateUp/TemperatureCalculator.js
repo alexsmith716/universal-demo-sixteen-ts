@@ -37,32 +37,25 @@ class TemperatureCalculator extends Component {
 
     return (
 
-      <div className="row justify-content-md-center">
-        <div className="col-md-auto">
+      <div className="row no-gutters justify-content-center">
+        <div className="col bg-color-ivory flex-width-400">
+          <div className="my-1 container-padding-border-radius-2 text-break">
+            <form>
 
-          <div className="d-flex bg-color-ivory container-padding-border-radius-2">
+              <TemperatureInput
+                scale="c"
+                temperature={ celsius }
+                onTemperatureChange={ celsiusChange } />
 
-            <div className="width-400">
+              <TemperatureInput
+                scale="f"
+                temperature={ fahrenheit }
+                onTemperatureChange={ fahrenheitChange } />
 
-              <form>
+            </form>
 
-                <TemperatureInput
-                  scale="c"
-                  temperature={ celsius }
-                  onTemperatureChange={ celsiusChange } />
-
-                <TemperatureInput
-                  scale="f"
-                  temperature={ fahrenheit }
-                  onTemperatureChange={ fahrenheitChange } />
-
-              </form>
-
-              <BoilingVerdict celsius={ parseFloat(celsius) } />
-
-            </div>
+            <BoilingVerdict celsius={ parseFloat(celsius) } />
           </div>
-
         </div>
       </div>
     );
