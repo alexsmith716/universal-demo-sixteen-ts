@@ -74,6 +74,46 @@ class AboutOne extends Component {
             <div className="card h-100">
 
               <h2 className="card-header text-center font-tester-font2">
+                Clock: state and lifecycle in a basic React component!
+              </h2>
+
+              <div className="card-body text-center text-break">
+
+                <div className="card-title">
+
+                  <RandomBootstrapAlert />
+
+                  <p>With supporting text below as a natural lead-in to additional content.</p>
+
+                  <a href="#" className="btn btn-primary">Go somewhere</a>
+
+                </div>
+              </div>
+
+              <div className="card-footer text-muted text-center">
+
+                <div className="row no-gutters justify-content-center">
+                  <div className="col bg-color-ivory flex-width-400">
+                    <div className="my-1 container-padding-border-radius-2 text-break">
+                      <Clock />
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* (>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>) */}
+
+        <div className="row">
+
+          <div className="col-lg-12 mb-4">
+
+            <div className="card h-100">
+
+              <h2 className="card-header text-center font-tester-font2">
                 Thinking in React!
               </h2>
 
@@ -461,59 +501,6 @@ class AboutOne extends Component {
 
                   </div>
 
-                </div>
-
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* (>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>) */}
-
-        <div className="row">
-
-          <div className="col-lg-12 mb-4">
-
-            <div className="card h-100">
-
-              <h2 className="card-header text-center font-tester-font2">
-                Clock: state and lifecycle in a basic React component!
-              </h2>
-
-              <div className="card-body text-center">
-
-                <div className="card-title">
-
-                  <RandomBootstrapAlert />
-
-                  <p>With supporting text below as a natural lead-in to additional content.</p>
-
-                  <a href="#" className="btn btn-primary">Go somewhere</a>
-
-                </div>
-              </div>
-
-              <div className="card-footer text-muted text-center">
-
-                <div className="row justify-content-center">
-                  <div className="col-md-auto">
-
-                    <div className="d-flex bg-color-ivory container-padding-border-radius-2">
-
-                      <div className="width-400 text-center">
-
-                        <div className="row">
-
-                          <div className="col">
-                            <Clock />
-                          </div>
-
-                        </div>
-
-                      </div>
-                    </div>
-
-                  </div>
                 </div>
 
               </div>
