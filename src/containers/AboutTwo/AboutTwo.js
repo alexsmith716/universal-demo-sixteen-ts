@@ -171,14 +171,20 @@ class AboutTwo extends Component {
               <div className="card-body">
 
                 <h5 className="card-title text-center">
-                  Most Basic CounterPreloaded
+                  Most Basic CounterPreloaded 1
                 </h5>
 
-                <div className="card-body-container">
+                <div className="basic-outer-box padding-two-border-radius-six">
 
-                  <div className="card-body-content">
+                  <div className="basic-inner-box padding-five-border-radius-three">
 
-                    <CounterPreloaded />
+                    <div className="row no-gutters justify-content-center">
+                      <div className="col bg-color-ivory flex-width-400">
+                        <div className="my-1 container-padding-border-radius-2 text-break">
+                          <CounterPreloaded/>
+                        </div>
+                      </div>
+                    </div>
 
                   </div>
                 </div>
@@ -205,11 +211,17 @@ class AboutTwo extends Component {
                   Most Basic CounterMultireducer 'AboutTwoMultireducer1'
                 </h5>
 
-                <div className="card-body-container">
+                <div className="basic-outer-box padding-two-border-radius-six">
 
-                  <div className="card-body-content">
+                  <div className="basic-inner-box padding-five-border-radius-three">
 
-                    <CounterMultireducer multireducerKey="AboutTwoMultireducer1" />
+                    <div className="row no-gutters justify-content-center">
+                      <div className="col bg-color-ivory flex-width-400">
+                        <div className="my-1 container-padding-border-radius-2 text-break">
+                          <CounterMultireducer multireducerKey="AboutTwoMultireducer1" />
+                        </div>
+                      </div>
+                    </div>
 
                   </div>
                 </div>
@@ -236,11 +248,17 @@ class AboutTwo extends Component {
                   Most Basic CounterMultireducer 'AboutTwoMultireducer2'
                 </h5>
 
-                <div className="card-body-container">
+                <div className="basic-outer-box padding-two-border-radius-six">
 
-                  <div className="card-body-content">
+                  <div className="basic-inner-box padding-five-border-radius-three">
 
-                    <CounterMultireducer multireducerKey="AboutTwoMultireducer2" />
+                    <div className="row no-gutters justify-content-center">
+                      <div className="col bg-color-ivory flex-width-400">
+                        <div className="my-1 container-padding-border-radius-2 text-break">
+                          <CounterMultireducer multireducerKey="AboutTwoMultireducer2" />
+                        </div>
+                      </div>
+                    </div>
 
                   </div>
                 </div>
