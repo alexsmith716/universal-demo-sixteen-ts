@@ -11,7 +11,7 @@ import asyncMatchRoutes from './utils/asyncMatchRoutes';
 import { routes } from './routes';
 import configureStore from './redux/configureStore';
 import initialStatePreloaded from './redux/initial-preloaded-state';
-// import { getUserAgent, isBot } from './utils/device';
+import { getUserAgent, isBot } from './utils/device';
 
 import { flushChunkNames } from 'react-universal-component/server';
 import flushChunks from 'webpack-flush-chunks';
@@ -44,9 +44,9 @@ export default ({ clientStats }) => async (req, res, next) => {
 //   // returned as express middleware
 //   return async function(req, res) {
 
-  // req.counterPreloadedState = Math.floor(Math.random() * (100 - 1)) + 1;
-  // req.userAgent = getUserAgent(req.headers['user-agent']);
-  // req.isBot = isBot(req.headers['user-agent']);
+  req.counterPreloadedState = Math.floor(Math.random() * (100 - 1)) + 1;
+  req.userAgent = getUserAgent(req.headers['user-agent']);
+  req.isBot = isBot(req.headers['user-agent']);
 
   const history = createMemoryHistory({ initialEntries: [req.originalUrl] });
 
