@@ -281,12 +281,16 @@ class AboutOne extends Component {
 
                   <div className="basic-inner-box padding-five-border-radius-three">
 
-                    <CounterMultireducer multireducerKey="AboutOneMultireducer1" />
+                    <div className="row no-gutters justify-content-center">
+                      <div className="col bg-color-ivory flex-width-400">
+                        <div className="my-1 container-padding-border-radius-2 text-break">
+                          <CounterMultireducer multireducerKey="AboutOneMultireducer1" />
+                        </div>
+                      </div>
+                    </div>
 
                   </div>
-
                 </div>
-
               </div>
             </div>
           </div>
