@@ -523,7 +523,7 @@ class AboutOne extends Component {
               <div className="card-body">
 
                 <h5 className="card-title text-center">
-                  Lifting State Up 'AboutOne1!'
+                  Lifting State Up 'AboutOne1'
                 </h5>
 
                 <div className="basic-outer-box padding-two-border-radius-six">

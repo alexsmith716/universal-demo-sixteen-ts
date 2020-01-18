@@ -312,18 +312,22 @@ class FilterableTable extends Component {
 
         {/* (>>>>>>>>>>>>>>>>>>>>>> DropdownSelect >>>>>>>>>>>>>>>>>>>>>>>>) */}
 
-        <div className={`container-padding-border-radius-2`}>
-          <div className="d-flex bg-color-ivory container-padding-border-radius-1">
-            <div className="width-400">
+        <div className="my-1 mx-1 p-1 container-padding-border-radius-2">
+          <div className="my-1 mx-1 bg-color-ivory container-padding-border-radius-1">
 
-              <DropdownSelect
-                title={ description }
-                optionsArray={ optionsArray }
-                dropDownOptionSelected={ dropDownOptionSelected }
-                onChange={ this.handleDropdownChange }
-              />
+            <div className="row no-gutters">
+              <div className="col bg-color-ivory flex-width-400">
 
+                <DropdownSelect
+                  title={ description }
+                  optionsArray={ optionsArray }
+                  dropDownOptionSelected={ dropDownOptionSelected }
+                  onChange={ this.handleDropdownChange }
+                />
+
+              </div>
             </div>
+
           </div>
         </div>
 
@@ -333,8 +337,8 @@ class FilterableTable extends Component {
 
             <div>
               <br/>
-              <div className={`container-padding-border-radius-2`}>
-                <div className="container-padding-border-radius-1">
+              <div className="my-1 mx-1 p-1 container-padding-border-radius-2">
+                <div className="my-1 mx-1 bg-color-ivory container-padding-border-radius-1">
 
                   <Loading text={ loadingText } />
 
@@ -350,8 +354,8 @@ class FilterableTable extends Component {
 
             <div>
               <br/>
-              <div className={`container-padding-border-radius-2`}>
-                <div className="container-padding-border-radius-1">
+              <div className="my-1 mx-1 p-1 container-padding-border-radius-2">
+                <div className="my-1 mx-1 bg-color-ivory container-padding-border-radius-1">
 
                   <div className="alert alert-danger text-center" role="alert">
                     <div>{errorResponse.documentation_url}</div>
@@ -372,8 +376,8 @@ class FilterableTable extends Component {
 
             <div>
               <br/>
-              <div className={`container-padding-border-radius-2`}>
-                <div className="container-padding-border-radius-1">
+              <div className="my-1 mx-1 p-1 container-padding-border-radius-2">
+                <div className="my-1 mx-1 bg-color-ivory container-padding-border-radius-1">
 
                   {items}
 
@@ -390,9 +394,12 @@ class FilterableTable extends Component {
 
             <div>
               <br/>
-                <div className={`container-padding-border-radius-2`}>
-                  <div className="d-flex bg-color-ivory container-padding-border-radius-1">
-                    <div className="width-400">
+
+              <div className="my-1 mx-1 p-1 container-padding-border-radius-2">
+                <div className="my-1 mx-1 bg-color-ivory container-padding-border-radius-1">
+
+                  <div className="row no-gutters">
+                    <div className="col bg-color-ivory flex-width-400">
 
                       <SearchBar 
                         filterText={ filterText }
@@ -404,18 +411,18 @@ class FilterableTable extends Component {
                     </div>
                   </div>
 
-                  <br />
-
-                  <div>
-
-                    <Tables 
-                      tablesData={ data } 
-                      filterText={ filterText }
-                      inStockOnly={ inStockOnly }
-                    />
-
-                  </div>
                 </div>
+
+                <br />
+                <div>
+                  <Tables 
+                    tablesData={ data } 
+                    filterText={ filterText }
+                    inStockOnly={ inStockOnly }
+                  />
+                </div>
+
+              </div>
             </div>
           )}
 
