@@ -92,8 +92,8 @@ class AboutOne extends Component {
 
               <div className="card-footer text-muted text-center">
 
-                <div className="row no-gutters justify-content-center">
-                  <div className="col bg-color-ivory flex-width-400">
+                <div className="d-flex justify-content-center">
+                  <div className="bg-color-ivory width-400">
                     <div className="my-1 container-padding-border-radius-2 text-break">
                       <Clock />
                     </div>
@@ -168,11 +168,11 @@ class AboutOne extends Component {
 
                       <div className="my-1 mx-1 bg-color-ivory container-padding-border-radius-1 text-break">
                         <div className="mb-2">
-                          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sed voluptate nihil eum consectetur similique? Consectetur, quod, incidunt, harum nisi dolores delectus reprehenderit voluptatem perferendis dicta dolorem non blanditiis ex fugiat. Xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx!
+                          Lorem!!!!!! ipsum dolor sit amet, consectetur adipisicing elit. Sed voluptate nihil eum consectetur similique? Consectetur, quod, incidunt, harum nisi dolores delectus reprehenderit voluptatem perferendis dicta dolorem non blanditiis ex fugiat. Xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx!
                         </div>
-                        <div className="row mx-md-n5">
-                          <div className="col px-md-5"><div className="p-3 border bg-light">Custom column padding</div></div>
-                          <div className="col px-md-5"><div className="p-3 border bg-light">Custom column padding</div></div>
+                        <div className="d-flex justify-content-around">
+                          <div className="px-md-5"><div className="p-3 border bg-light">Custom column padding</div></div>
+                          <div className="px-md-5"><div className="p-3 border bg-light">Custom column padding</div></div>
                         </div>
                       </div>
 
@@ -207,19 +207,30 @@ class AboutOne extends Component {
                   <div className="basic-inner-box padding-five-border-radius-three">
 
                     <div className="my-1 mx-1 bg-color-ivory container-padding-border-radius-2 text-break">
-                      <div className="mb-2">
-                        Xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx! Et, consequuntur, modi mollitia corporis ipsa voluptate corrupti eum ratione ex ea praesentium quibusdam? Aut, in eum facere corrupti necessitatibus perspiciatis quis?
+
+                      <div className="row mb-2">
+                        <div className="col">
+                          Xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx! Et, consequuntur, modi mollitia corporis ipsa voluptate corrupti eum ratione ex ea praesentium quibusdam? Aut, in eum facere corrupti necessitatibus perspiciatis quis?
+                        </div>
                       </div>
-                      <div className="row mx-md-n5">
-                        <div className="col px-md-5"><div className="p-3 border bg-light">Custom column padding</div></div>
-                        <div className="col px-md-5"><div className="p-3 border bg-light">Custom column padding</div></div>
+
+                      <div className="row">
+                        <div className="col-lg-6 col-md-6 col-sm-12 px-md-5 mb-lg-0 mb-md-0 mb-sm-2 mb-2">
+                          <div className="p-3 border bg-light text-center">
+                            Custom column padding
+                          </div>
+                        </div>
+
+                        <div className="col-lg-6 col-md-6 col-sm-12 px-md-5">
+                          <div className="p-3 border bg-light text-center">
+                            Custom column padding
+                          </div>
+                        </div>
                       </div>
+
                     </div>
-
                   </div>
-
                 </div>
-
               </div>
             </div>
           </div>
@@ -247,8 +258,8 @@ class AboutOne extends Component {
 
                   <div className="basic-inner-box padding-five-border-radius-three">
 
-                    <div className="row no-gutters justify-content-center">
-                      <div className="col bg-color-ivory flex-width-400">
+                    <div className="d-flex justify-content-center">
+                      <div className="bg-color-ivory width-400">
                         <div className="my-1 container-padding-border-radius-2 text-break">
                           <CounterPreloaded/>
                         </div>
@@ -284,8 +295,8 @@ class AboutOne extends Component {
 
                   <div className="basic-inner-box padding-five-border-radius-three">
 
-                    <div className="row no-gutters justify-content-center">
-                      <div className="col bg-color-ivory flex-width-400">
+                    <div className="d-flex justify-content-center">
+                      <div className="bg-color-ivory width-400">
                         <div className="my-1 container-padding-border-radius-2 text-break">
                           <CounterPreloaded/>
                         </div>
@@ -321,8 +332,8 @@ class AboutOne extends Component {
 
                   <div className="basic-inner-box padding-five-border-radius-three">
 
-                    <div className="row no-gutters justify-content-center">
-                      <div className="col bg-color-ivory flex-width-400">
+                    <div className="d-flex justify-content-center">
+                      <div className="bg-color-ivory width-400">
                         <div className="my-1 container-padding-border-radius-2 text-break">
                           <CounterMultireducer multireducerKey="AboutOneMultireducer1" />
                         </div>
