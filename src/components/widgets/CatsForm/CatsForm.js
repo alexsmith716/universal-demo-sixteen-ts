@@ -78,8 +78,8 @@ class CatsForm extends Component {
 
     return (
 
-      <div className="row no-gutters justify-content-center">
-        <div className="col bg-color-ivory flex-width-600">
+      <div className="d-flex justify-content-center">
+        <div className="bg-color-ivory width-600">
           <div className="my-1 container-padding-border-radius-2">
 
             <form onSubmit={this.handleSubmit} >

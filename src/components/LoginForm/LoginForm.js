@@ -68,7 +68,7 @@ const LoginForm = ({ onSubmit }) => (
         </div>
 
         <div className="d-flex justify-content-center mt-4">
-          <a className="btn btn-success btn-width-one-half" href="#">Sign in</a>
+          <a className="btn btn-success w-50" href="#">Sign in</a>
         </div>
 
       </form>

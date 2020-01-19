@@ -96,22 +96,6 @@ hr.light {
   text-align: inherit;
 }
 
-.btn-width-one-quarter {
-  width: 25%;
-}
-
-.btn-width-one-third {
-  width: 33%;
-}
-
-.btn-width-one-half {
-  width: 50%;
-}
-
-.btn-width-three-quarters {
-  width: 75%;
-}
-
 .font-weight-bold {
   font-weight: bold;
 }
@@ -124,19 +108,8 @@ hr.light {
   font-size: 90%;
 }
 
-.flex-width-400 {
-  -ms-flex: 0 0 400px;
-  flex: 0 0 400px;
-}
-
-.flex-width-500 {
-  -ms-flex: 0 0 500px;
-  flex: 0 0 500px;
-}
-
-.flex-width-600 {
-  -ms-flex: 0 0 600px;
-  flex: 0 0 600px;
+.width-one-third {
+  width: 33%;
 }
 
 .width-100 {
@@ -166,42 +139,6 @@ hr.light {
 .width-800 {
   width: calculate-rem(800px);
 }
-
-.width-one-quarter {
-  width: 25%;
-}
-
-.width-one-third {
-  width: 33%;
-}
-
-.width-one-half {
-  width: 50%;
-}
-
-.width-three-quarters {
-  width: 75%;
-}
-
-// .container-flex {
-//   display: flex;
-// }
-
-// .boundingbox {
-//   position: absolute;
-//   box-shadow: 0 0 0 3px #333333 inset;
-//   display: flex;
-//   flex-wrap: wrap;
-//   justify-content: center;
-//   cursor: pointer;
-// }
-
-// .display-flex-justify-direction-align-center {
-//   display: flex;
-//   justify-content: center;
-//   flex-direction: column;
-//   align-items: center;
-// }
 
 .basic-border-goldenrod-1 {
   border: calculate-rem(1px) solid #DAA520;

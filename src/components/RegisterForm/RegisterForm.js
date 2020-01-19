@@ -60,7 +60,7 @@ const RegisterForm = ({ onSubmit }) => (
         </div>
 
         <div className="d-flex justify-content-center mt-4">
-          <a className="btn btn-success btn-width-one-third" href="#">Register</a>
+          <a className="btn btn-success width-one-third" href="#">Register</a>
         </div>
 
       </form>

@@ -315,8 +315,8 @@ class FilterableTable extends Component {
         <div className="my-1 mx-1 p-1 container-padding-border-radius-2">
           <div className="my-1 mx-1 bg-color-ivory container-padding-border-radius-1">
 
-            <div className="row no-gutters">
-              <div className="col bg-color-ivory flex-width-400">
+            <div className="d-flex">
+              <div className="bg-color-ivory width-400">
 
                 <DropdownSelect
                   title={ description }
@@ -398,8 +398,8 @@ class FilterableTable extends Component {
               <div className="my-1 mx-1 p-1 container-padding-border-radius-2">
                 <div className="my-1 mx-1 bg-color-ivory container-padding-border-radius-1">
 
-                  <div className="row no-gutters">
-                    <div className="col bg-color-ivory flex-width-400">
+                  <div className="d-flex">
+                    <div className="bg-color-ivory width-400">
 
                       <SearchBar 
                         filterText={ filterText }
