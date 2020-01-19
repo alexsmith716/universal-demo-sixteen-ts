@@ -78,45 +78,41 @@ class CatsForm extends Component {
 
     return (
 
-      <div className="row justify-content-md-center">
-        <div className="col-md-auto">
+      <div className="row no-gutters justify-content-center">
+        <div className="col bg-color-ivory flex-width-600">
+          <div className="my-1 container-padding-border-radius-2">
 
-          <div className="d-flex bg-color-ivory container-padding-border-radius-2">
-            <div className="width-600">
+            <form onSubmit={this.handleSubmit} >
 
-                <form onSubmit={this.handleSubmit} >
+              <div className="form-row mb-2">
 
-                  <div className="form-row mb-2">
+                <div className="form-group col-md-6">
+                  <label htmlFor="owner">Owner</label>
+                  <input type="text" className="form-control" name="owner" id="owner" value={owner} onChange={this.handleChange} placeholder="Owner!!" />
+                </div>
 
-                    <div className="form-group col-md-6">
-                      <label htmlFor="owner">Owner</label>
-                      <input type="text" className="form-control" name="owner" id="owner" value={owner} onChange={this.handleChange} placeholder="Owner" />
-                    </div>
+                <div className="form-group col-md-6">
+                  <label htmlFor="description">Description</label>
+                  <input type="text" className="form-control" name="description" id="description" value={description} onChange={this.handleChange} placeholder="Description" />
+                </div>
 
-                    <div className="form-group col-md-6">
-                      <label htmlFor="description">Description</label>
-                      <input type="text" className="form-control" name="description" id="description" value={description} onChange={this.handleChange} placeholder="Description" />
-                    </div>
+              </div>
 
-                  </div>
+              <CatInputs cats={cats} onChange={ this.handleChange } />
 
-                  <CatInputs cats={cats} onChange={ this.handleChange } />
+              <div className="row text-center">
+                <div className="col-lg-6 col-md-6 col-sm-12 mb-lg-0 mb-md-0 mb-sm-2 mb-2">
+                  <button onClick={this.addCat} className="btn btn-primary">Add new cat</button>
+                </div>
 
-                  <div className="row text-center">
-                    <div className="col-lg-6 col-md-6 col-sm-12 mb-lg-0 mb-md-0 mb-sm-2 mb-2">
-                      <button onClick={this.addCat} className="btn btn-primary">Add new cat</button>
-                    </div>
+                <div className="col-lg-6 col-md-6 col-sm-12">
+                  <button type="submit" className="btn btn-success">Submit</button>
+                </div>
+              </div>
 
-                    <div className="col-lg-6 col-md-6 col-sm-12">
-                      <button type="submit" className="btn btn-success">Submit</button>
-                    </div>
-                  </div>
+            </form>
 
-                </form>
-
-            </div>
           </div>
-
         </div>
       </div>
     )
