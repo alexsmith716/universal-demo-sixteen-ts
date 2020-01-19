@@ -102,72 +102,68 @@ class LineChart extends Component {
 
     return (
 
-      <div className="row justify-content-md-center">
-        <div className="col-md-auto">
+      <div className="row no-gutters justify-content-center">
+        <div className="col bg-color-ivory flex-width-500">
+          <div className="my-1 container-padding-border-radius-2">
 
-          <div className="d-flex bg-color-ivory container-padding-border-radius-2">
-            <div className="width-500">
+            <p>{title}</p>
 
-              <p>{title}</p>
+            {/* (>>>>>>>>>>>>>>>>>>>>>> ONLINE >>>>>>>>>>>>>>>>>>>>>>>>) */}
 
-              {/* (>>>>>>>>>>>>>>>>>>>>>> ONLINE >>>>>>>>>>>>>>>>>>>>>>>>) */}
+            {!online &&
+              !loaded && (
+                <div className="alert alert-danger fade show" role="alert">
+                  <div className="text-center">NETWORK ERROR</div>
+                </div>
+            )}
 
-              {!online &&
-                !loaded && (
-                  <div className="alert alert-danger fade show" role="alert">
-                    <div className="text-center">NETWORK ERROR</div>
-                  </div>
+            {/* (>>>>>>>>>>>>>>>>>>>>>> LOADING >>>>>>>>>>>>>>>>>>>>>>>>) */}
+
+            {loading && (
+                <Loading text="Loading" />
               )}
 
-              {/* (>>>>>>>>>>>>>>>>>>>>>> LOADING >>>>>>>>>>>>>>>>>>>>>>>>) */}
+            {/* (>>>>>>>>>>>>>>>>>>>>>> ERROR >>>>>>>>>>>>>>>>>>>>>>>>) */}
+            {/* (>>>>>>>>>>>>>>>>>>>>>> test '!loaded' vs 'loaded' >>>>>>>>>>>>>>>>>>>>>>>>) */}
 
-              {loading && (
-                  <Loading text="Loading" />
-                )}
+            {error &&
+              !loading && (
 
-              {/* (>>>>>>>>>>>>>>>>>>>>>> ERROR >>>>>>>>>>>>>>>>>>>>>>>>) */}
-              {/* (>>>>>>>>>>>>>>>>>>>>>> test '!loaded' vs 'loaded' >>>>>>>>>>>>>>>>>>>>>>>>) */}
+                <div className="alert alert-danger alert-dismissible fade show" role="alert">
+                  <div className="text-center">RENDERING ERROR<br/><span>{`Message: ${errorResponse.message}`}</span></div>
+                  <button type="button" className="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
 
-              {error &&
-                !loading && (
+              )}
 
-                  <div className="alert alert-danger alert-dismissible fade show" role="alert">
-                    <div className="text-center">RENDERING ERROR<br/><span>{`Message: ${errorResponse.message}`}</span></div>
-                    <button type="button" className="close" data-dismiss="alert" aria-label="Close">
-                      <span aria-hidden="true">&times;</span>
-                    </button>
-                  </div>
+            {/* (>>>>>>>>>>>>>>>>>>>>>> DATA LOADED >>>>>>>>>>>>>>>>>>>>>>>>) */}
 
-                )}
+            {loaded &&
+              !loading && (
 
-              {/* (>>>>>>>>>>>>>>>>>>>>>> DATA LOADED >>>>>>>>>>>>>>>>>>>>>>>>) */}
+                <div>
 
-              {loaded &&
-                !loading && (
+                  <div className={`svg-container mb-4`} ref={containerRef}></div>
 
-                  <div>
+                  <form className="form-inline" onSubmit={this.handleUpdate}>
 
-                    <div className={`svg-container mb-4`} ref={containerRef}></div>
+                    <div className="form-group mb-2">
+                      <label htmlFor="datePicker1" className="sr-only">Enter Time</label>
+                      <input type="date" className="form-control" id="datePicker1" ref={inputXValueRef} placeholder="Enter Time" />
+                    </div>
+                    <div className="form-group mx-sm-3 mb-2">
+                      <label className="enterValue1" className="sr-only">Enter Value</label>
+                      <input type="number" className="form-control" id="enterValue1" ref={inputYValueRef} placeholder="Enter Value" />
+                    </div>
+                    <button type="submit" className="btn btn-primary mb-2">Submit</button>
+                  </form>
+                </div>
 
-                    <form className="form-inline" onSubmit={this.handleUpdate}>
+              )}
 
-                      <div className="form-group mb-2">
-                        <label htmlFor="datePicker1" className="sr-only">Enter Time</label>
-                        <input type="date" className="form-control" id="datePicker1" ref={inputXValueRef} placeholder="Enter Time" />
-                      </div>
-                      <div className="form-group mx-sm-3 mb-2">
-                        <label className="enterValue1" className="sr-only">Enter Value</label>
-                        <input type="number" className="form-control" id="enterValue1" ref={inputYValueRef} placeholder="Enter Value" />
-                      </div>
-                      <button type="submit" className="btn btn-primary mb-2">Submit</button>
-                    </form>
-                  </div>
-
-                )}
-
-            </div>
           </div>
-
         </div>
       </div>
     );
