@@ -146,8 +146,8 @@ export class App extends Component {
 
           {/* ------------- Device State ----------- */}
 
-          <div className="d-flex justify-content-center bg-info">
-            <div className="bg-color-ivory text-center text-break">
+          <div className="d-flex justify-content-center">
+            <div className="bg-color-ivory text-center m-2">
               <div className="color-olive font-opensans-bold-webfont">{`'online' store state is ${online} !`}</div>
               <div className="color-crimson font-philosopher-bold-webfont">{`device 'userAgent' store state is ${userAgent} !`}</div>
               <div className="color-orangered font-norwester">{`device 'bot' store state is ${isBot} !`}</div>
