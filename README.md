@@ -2,9 +2,12 @@
 
 react-universal-component
 
-### Alternatives Needed:
+### Universal/SSR Prefetch Alternatives Needed:
 
+* REDIAL > No TS type defs (though can be addressed)
 * REDIAL > avoid using decorators (function component) > using `provideHooks` as a function VS class component
+
+* Device State (prefetched data) && InfoBar should be part of Footer
 
 https://github.com/markdalgleish/redial
 https://github.com/tannerlinsley/react-query
