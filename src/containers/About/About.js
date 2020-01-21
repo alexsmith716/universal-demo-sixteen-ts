@@ -26,7 +26,7 @@ class About extends Component {
 
         <Helmet title="About Us" />
 
-        <h1 className={`mt-4 mb-3 ${styles.aboutUniqueColor}`}>About Election App 2020</h1>
+        <h1 className={styles.aboutUniqueColor}>About Election App 2020</h1>
 
         <div className="row">
           <div className="col-lg-6">

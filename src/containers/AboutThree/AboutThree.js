@@ -17,7 +17,7 @@ class AboutThree extends Component {
 
         <Helmet title="About Three" />
 
-        <h1 className={`mt-4 mb-3 ${styles.uniqueColor}`}>About Three</h1>
+        <h1 className={styles.uniqueColor}>About Three</h1>
 
         {/* (>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>) */}
 

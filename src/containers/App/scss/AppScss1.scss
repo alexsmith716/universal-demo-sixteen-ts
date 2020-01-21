@@ -42,7 +42,7 @@
   background-color: $shared-var-color-syracuse-orange;
   // @extend %footerHeight;
   height: calculate-rem($footer-height);
-  .flexContainer {
+  .copyright {
     color: #FFFFFF;
     @include lobster-v20-latin-regular-font;
   }

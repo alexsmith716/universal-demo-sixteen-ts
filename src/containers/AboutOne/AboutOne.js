@@ -130,7 +130,9 @@ class AboutOne extends Component {
                     <div className="d-flex justify-content-center">
                       <div className="bg-color-ivory width-400">
                         <div className="my-1 container-padding-border-radius-2 text-break">
+
                           <CounterPreloaded/>
+
                         </div>
                       </div>
                     </div>

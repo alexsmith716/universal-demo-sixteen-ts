@@ -13,7 +13,7 @@ export class Home extends Component {
 
         <Helmet title="Home" />
 
-        <header className={styles.masthead}>
+        <div className={styles.masthead}>
 
           <div className="container">
 
@@ -23,22 +23,18 @@ export class Home extends Component {
 
             <div className={styles.blurb}>What are you and others saying?</div>
 
-            <div className={styles.blurbElipsis}>... join the conversation.</div>
+            <div className={styles.blurbElipsis}>... join the conversation!!!!.</div>
 
             <div>
-
               <a className="btn btn-primary btn-lg" role="button" href="#">Sign Up Now »</a>
-
             </div>
 
           </div>
 
-        </header>
+        </div>
 
         <div className="container">
-
-          <div className="row my-4">
-
+          <div className="row mt-4">
             <div className="col-lg-4 mb-4">
               <div className="card h-100">
                 <h4 className="card-header">Card Title 1</h4>
@@ -74,9 +70,9 @@ export class Home extends Component {
                 </div>
               </div>
             </div>
-
           </div>
         </div>
+
       </div>
     );
   }
