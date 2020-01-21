@@ -15,7 +15,11 @@ class StickyFooter extends Component {
 
         <h1 className={styles.uniqueColor}>Sticky Footer Test!</h1>
 
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Et, consequuntur, modi mollitia corporis ipsa voluptate corrupti eum ratione ex ea praesentium quibusdam? Aut, in eum facere corrupti necessitatibus perspiciatis quis?</p>
+        <div className="row">
+          <div className="col">
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Et, consequuntur, modi mollitia corporis ipsa voluptate corrupti eum ratione ex ea praesentium quibusdam? Aut, in eum facere corrupti necessitatibus perspiciatis quis?</p>
+          </div>
+        </div>
 
       </div>
     );

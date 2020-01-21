@@ -15,7 +15,7 @@ class AboutFour extends Component {
 
         <Helmet title="About Four" />
 
-        <h1 className={`mt-4 mb-3 ${styles.uniqueColor}`}>About Four</h1>
+        <h1 className={styles.uniqueColor}>About Four</h1>
 
         <div className="row">
           <div className="col-lg-6">

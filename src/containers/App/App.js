@@ -79,7 +79,7 @@ export class App extends Component {
 
       <HelmetProvider>
 
-        <div className={styles.app}>
+        <div className={`bg-danger ${styles.app}`}>
 
           <Helmet {...config.app.head} />
 
@@ -140,19 +140,17 @@ export class App extends Component {
 
           {/* ------------- Main Content ------------- */}
 
-          <div className={styles.appContent}>
+          <div className="bg-warning">
             {renderRoutes(route.routes)}
           </div>
 
           {/* ------------- Device State ----------- */}
 
-          <div className="card text-center">
-            <div className="card-body bg-light">
-          
-              <p className="color-olive font-opensans-bold-webfont">{`'online' store state is ${online} !`}</p>
-              <p className="color-crimson font-philosopher-bold-webfont">{`device 'userAgent' store state is ${userAgent} !`}</p>
-              <p className="color-orangered font-norwester">{`device 'bot' store state is ${isBot} !`}</p>
-
+          <div className="d-flex justify-content-center bg-info">
+            <div className="bg-color-ivory text-center text-break">
+              <div className="color-olive font-opensans-bold-webfont">{`'online' store state is ${online} !`}</div>
+              <div className="color-crimson font-philosopher-bold-webfont">{`device 'userAgent' store state is ${userAgent} !`}</div>
+              <div className="color-orangered font-norwester">{`device 'bot' store state is ${isBot} !`}</div>
             </div>
           </div>
 
