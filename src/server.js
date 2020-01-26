@@ -8,6 +8,7 @@ import { CookieStorage, NodeCookiesWrapper } from 'redux-persist-cookie-storage'
 import { trigger } from 'redial';
 
 import asyncMatchRoutes from './utils/asyncMatchRoutes';
+import asyncGetPromises from './utils/asyncGetPromises';
 import { routes } from './routes';
 import configureStore from './redux/configureStore';
 import initialStatePreloaded from './redux/initial-preloaded-state';
