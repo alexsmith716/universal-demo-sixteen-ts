@@ -24,26 +24,8 @@ import apiClient from './helpers/apiClient';
 import { HelmetProvider } from 'react-helmet-async';
 import serialize from 'serialize-javascript';
 
-// const getRandomInt = (min, max) => (
-//   Math.floor(Math.random() * (max - min)) + min
-// )
-
-// function binding: creating a function that calls another function with a specific 'this' value and with specific arguments
-// function binding: technique used in conjunction with callbacks and event handlers
-// function binding: used to preserve code execution context while passing functions around as variables
-
-// HOF is a function which returns a function
-// function currying: create a function that has arguments already set
-// basic approach: use a closure to return a new function ()
-// closure: 
-//    * the combination of a function (return async function(req, res)) 
-//    * and the lexical environment within which that function was DECLARED ({ clientStats })
-// --------------------------
-export default ({ clientStats }) => async (req, res, next) => {
-// export default function({ clientStats }) {
-//   // anonymous wrapper that creates a closure with access to above lexical env var '{ clientStats }'
-//   // returned as express middleware
-//   return async function(req, res) {
+// -------------------------------------------------------------------
+export default ({ clientStats }) => async (req, res) => {
 
   req.counterPreloadedState = Math.floor(Math.random() * (100 - 1)) + 1;
   req.userAgent = getUserAgent(req.headers['user-agent']);
@@ -63,6 +45,20 @@ export default ({ clientStats }) => async (req, res, next) => {
     helpers: providers
   });
 
+  // =======================================================================================
+  console.log('>>>>>>>>>>>>>>>>>>>>>>>> SERVER > store.getState(): ', store.getState());
+  const { promises } = await asyncGetPromises(routes, req.path, store);
+  console.log('>>>>>>>>>>>>>>>>>>>>>>>> SERVER > promises: ', promises);
+
+  Promise.all(promises)
+    .then(() => {
+      console.log('>>>>>>>>>>>>>>>>>>>>>>>> SERVER > store.getState(): ', store.getState());
+    })
+    .catch(error => {
+      console.log('>>>>>>>>>>>>>>>>>>>>>>>> SERVER > Promise.all > ERROR: ', error);
+    })
+  // =======================================================================================
+
   function hydrate(a) {
     res.write('<!doctype html>');
     ReactDOM.renderToNodeStream(<Html assets={a} store={store} />).pipe(res);
@@ -70,21 +66,23 @@ export default ({ clientStats }) => async (req, res, next) => {
 
   try {
 
-    const { components, match, params } = await asyncMatchRoutes(routes, req.path);
-
+    // =============================================================================
+    // Match routes based on history object:
+    // Get array of route handler components:
+    const { components, match } = await asyncMatchRoutes(routes, req.path);
+    // Define locals to be provided to all lifecycle hooks:
     const triggerLocals = {
       ...providers,
       store,
       match,
-      params,
       history,
       location: history.location
     };
-
+    // Wait for async data fetching to complete, then render:
     await trigger('fetch', components, triggerLocals);
+    // =============================================================================
 
     const helmetContext = {};
-
     const context = {};
 
     const component = (
@@ -119,8 +117,8 @@ export default ({ clientStats }) => async (req, res, next) => {
       return res.redirect(301, location.pathname);
     }
 
-    const used = process.memoryUsage().heapUsed / 1024 / 1024;
-    console.log(`SERVER.JS: The script uses approximately ${Math.round(used * 100) / 100} MB`);
+    // const used = process.memoryUsage().heapUsed / 1024 / 1024;
+    // console.log(`SERVER.JS: The script uses approximately ${Math.round(used * 100) / 100} MB`);
 
     const reduxStore = serialize(store.getState());
 

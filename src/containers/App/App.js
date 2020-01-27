@@ -2,7 +2,7 @@ import _ from 'lodash';
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { provideHooks } from 'redial';
+// import { provideHooks } from 'redial';
 import { withRouter } from 'react-router';
 import { renderRoutes } from 'react-router-config';
 import { Helmet, HelmetProvider } from 'react-helmet-async';
@@ -10,12 +10,12 @@ import qs from 'qs';
 import { Link } from 'react-router-dom';
 
 import { Footer } from '../../components';
-import { InfoBar } from '../../components';
+// import { InfoBar } from '../../components';
 import { ReadmeModal } from '../../components';
 import { FontsModal } from '../../components';
 
 import config from '../../../config/config';
-import { isLoaded as isInfoLoaded, load as loadInfo } from '../../redux/modules/info';
+// import { isLoaded as isInfoLoaded, load as loadInfo } from '../../redux/modules/info';
 
 @connect(state => ({
   online: state.online,
@@ -23,13 +23,18 @@ import { isLoaded as isInfoLoaded, load as loadInfo } from '../../redux/modules/
   isBot: state.device.isBot
 }))
 
-@provideHooks({
-  fetch: async ({ store: { dispatch, getState } }) => {
-    if (!isInfoLoaded(getState())) {
-      await dispatch(loadInfo()).catch(() => null);
-    }
-  }
-})
+// async function preloadData(store) {
+//   console.log('>>>>>>>>>>>>>>>> APP > preloadData() <<<<<<<<<<<<<<<<<<<')
+//   await Promise.resolve(null);
+// }
+
+// @provideHooks({
+//   fetch: async ({ store: { dispatch, getState } }) => {
+//     if (!isInfoLoaded(getState())) {
+//       await dispatch(loadInfo()).catch(() => null);
+//     }
+//   }
+// })
 
 @withRouter
 
@@ -156,7 +161,7 @@ export class App extends Component {
 
           {/* --------------- InfoBar ---------------- */}
 
-          <InfoBar />
+          {/* <InfoBar /> */}
 
           {/* --------------- Footer ----------------- */}
 
