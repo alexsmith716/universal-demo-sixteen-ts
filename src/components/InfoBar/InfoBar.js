@@ -15,13 +15,13 @@ import Loading from '../Loading/Loading';
 
 export class InfoBar extends Component {
 
-  state = { prevProps: this.props };
-
-  // ============================================================
-
   render() {
 
     const { data, loading, load, error, errorResponse } = this.props;
+
+    console.log('>>>>>>>>>>>>>>>>>>>>>>>> InfoBar > this.props.data: ', this.props.data);
+
+
     const styles = require('./scss/InfoBar.scss');
 
     return (

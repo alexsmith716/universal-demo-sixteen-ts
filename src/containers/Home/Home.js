@@ -1,5 +1,20 @@
 import React, { Component } from 'react';
 import { Helmet } from 'react-helmet-async';
+import { InfoBar } from '../../components';
+
+import { isLoaded as isInfoLoaded, load as loadInfo } from '../../redux/modules/info';
+
+async function preloadData(store, getState) {
+  console.log('>>>>>>>>>>>>>>>> HOME > preloadData() <<<<<<<<<<<<<<<<<<<')
+  await store.dispatch(loadInfo()).catch(() => null);
+  // await store.getState(loadInfo()).catch(() => null);
+}
+
+// @provideHooks({
+//   fetch: async ({ store: { dispatch, getState } }) => {
+//      await dispatch(loadInfo()).catch(() => null);
+//   }
+// })
 
 export class Home extends Component {
 
@@ -32,6 +47,10 @@ export class Home extends Component {
           </div>
 
         </div>
+
+        {/* --------------- InfoBar ---------------- */}
+
+        <InfoBar />
 
         <div className="container">
           <div className="row mt-4">
@@ -77,3 +96,5 @@ export class Home extends Component {
     );
   }
 }
+
+export { preloadData };

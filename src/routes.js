@@ -13,12 +13,18 @@ import StickyFooter from './containers/StickyFooter/Loadable';
 import Login from './containers/Login/Loadable';
 import Register from './containers/Register/Loadable';
 
+// import { preloadData as preloadDataApp } from './containers/App/App';
+import { preloadData } from './containers/Home/Home';
+
+console.log('DDDDDDDDDD: ', preloadData)
+
 import './theme/scss/global/styles.global.scss';
+// loadData: preloadData
 
 export const routes = [{
   component: App,
   routes: [
-    { path: '/', exact: true, component: Home },
+    { path: '/', exact: true, component: Home, preloadData },
     { path: '/about', component: About },
     { path: '/aboutone', component: AboutOne },
     { path: '/abouttwo', component: AboutTwo },

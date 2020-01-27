@@ -102,15 +102,15 @@ const done = function() {
       if (err) {
         console.error(">>>>>>>> BIN > START > ERROR:", err);
       }
-      console.log(
-        ">>>>>>>>>>>>> BIN > LOCALSTART > DONE > process.memoryUsage(): ",
-        process.memoryUsage()
-      );
-      const used = process.memoryUsage().heapUsed / 1024 / 1024;
-      console.log(
-        `LOCALSTART.JS: The script uses approximately ${Math.round(used * 100) /
-          100} MB`
-      );
+      // console.log(
+      //   ">>>>>>>>>>>>> BIN > LOCALSTART > DONE > process.memoryUsage(): ",
+      //   process.memoryUsage()
+      // );
+      // const used = process.memoryUsage().heapUsed / 1024 / 1024;
+      // console.log(
+      //   `LOCALSTART.JS: The script uses approximately ${Math.round(used * 100) /
+      //     100} MB`
+      // );
     });
   }
 };
@@ -180,17 +180,32 @@ if (__DEVELOPMENT__) {
       return;
     }
 
+    // const clientStats = stats.toJson().children[0];
+
+    // if (stats.hasErrors()) {
+    //   console.error(
+    //     ">>>>>>>> BIN > START > WEBPACK COMPILE > PROD > stats.hasErrors: ",
+    //     clientStats.errors
+    //   );
+    // }
+    // if (stats.hasWarnings()) {
+    //   console.warn(
+    //     ">>>>>>>> BIN > START > WEBPACK COMPILE > PROD > stats.hasWarnings: ",
+    //     clientStats.warnings
+    //   );
+    // }
+
     const clientStats = stats.toJson().children[0];
 
     if (stats.hasErrors()) {
       console.error(
-        ">>>>>>>> BIN > START > WEBPACK COMPILE > PROD > stats.hasErrors: ",
+        ">>>>>>>> BIN > START > WEBPACK COMPILE > PROD > clientStats.hasErrors: ",
         clientStats.errors
       );
     }
     if (stats.hasWarnings()) {
       console.warn(
-        ">>>>>>>> BIN > START > WEBPACK COMPILE > PROD > stats.hasWarnings: ",
+        ">>>>>>>> BIN > START > WEBPACK COMPILE > PROD > clientStats.hasWarnings: ",
         clientStats.warnings
       );
     }
@@ -203,10 +218,10 @@ if (__DEVELOPMENT__) {
   });
 }
 
-console.log(
-  ">>>>>>>>>>>>> BIN > LOCALSTART > process.memoryUsage(): ",
-  process.memoryUsage()
-);
+// console.log(
+//   ">>>>>>>>>>>>> BIN > LOCALSTART > process.memoryUsage(): ",
+//   process.memoryUsage()
+// );
 console.log(
   ">>>>>>>>>>>>> BIN > START > Node > process.nextTick() > START <<<<<<<<<<<<<<<<"
 );
