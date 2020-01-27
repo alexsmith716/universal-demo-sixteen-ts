@@ -7,7 +7,6 @@ import { isLoaded as isInfoLoaded, load as loadInfo } from '../../redux/modules/
 async function preloadData(store, getState) {
   console.log('>>>>>>>>>>>>>>>> HOME > preloadData() <<<<<<<<<<<<<<<<<<<')
   await store.dispatch(loadInfo()).catch(() => null);
-  // await store.getState(loadInfo()).catch(() => null);
 }
 
 // @provideHooks({
