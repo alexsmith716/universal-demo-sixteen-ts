@@ -196,17 +196,26 @@ if (__DEVELOPMENT__) {
     // }
 
     const clientStats = stats.toJson().children[0];
+    const serverStats = stats.toJson().children[1];
 
     if (stats.hasErrors()) {
       console.error(
         ">>>>>>>> BIN > START > WEBPACK COMPILE > PROD > clientStats.hasErrors: ",
         clientStats.errors
       );
+      console.error(
+        ">>>>>>>> BIN > START > WEBPACK COMPILE > PROD > serverStats.hasErrors: ",
+        serverStats.errors
+      );
     }
     if (stats.hasWarnings()) {
       console.warn(
         ">>>>>>>> BIN > START > WEBPACK COMPILE > PROD > clientStats.hasWarnings: ",
         clientStats.warnings
+      );
+      console.warn(
+        ">>>>>>>> BIN > START > WEBPACK COMPILE > PROD > serverStats.hasWarnings: ",
+        serverStats.warnings
       );
     }
 
