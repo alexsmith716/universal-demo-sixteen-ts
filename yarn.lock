@@ -5152,9 +5152,9 @@ forwarded@~0.1.2:
   integrity sha1-mMI9qxF1ZXuMBXPozszZGw/xjIQ=
 
 fp-ts@^2.0.2, fp-ts@^2.3.1:
-  version "2.4.1"
-  resolved "https://registry.yarnpkg.com/fp-ts/-/fp-ts-2.4.1.tgz#d20c785ff8179930922c7477c31f1ca44f763ae9"
-  integrity sha512-dPal5+rPN7k4ciZ2+O0+i75bbp17uTUoRkWWqJpkKed7wVcA5y/2jH4ZhunzUrJPuaG+mN9ZNf0pv5P7u/k7JQ==
+  version "2.4.2"
+  resolved "https://registry.yarnpkg.com/fp-ts/-/fp-ts-2.4.2.tgz#a24cd18d1f3a484913838de482125e6ddabdd939"
+  integrity sha512-/6dNmbu2CRhwR+/OpjLYT3OAlIlyrnY1qjbGDeyYkisTqQfbIdWL1P4sn28yKhcBLcfIvjo9614sfo0EKscOMA==
 
 fragment-cache@^0.2.1:
   version "0.2.1"
@@ -6043,10 +6043,10 @@ inquirer@^7.0.0:
     strip-ansi "^5.1.0"
     through "^2.3.6"
 
-inspectpack@^4.3.0:
-  version "4.3.0"
-  resolved "https://registry.yarnpkg.com/inspectpack/-/inspectpack-4.3.0.tgz#46eed2f6965137d7f418ce8ffc410e3e4ea599cd"
-  integrity sha512-qC/rynccDeX9/DXabjViwspCRkbDqiQCg0S4mySlHcxXg+X0KKVjT0uJULpMVqRmhHkX5kxhIVYcivq9HfEKoA==
+inspectpack@^4.3.1:
+  version "4.3.1"
+  resolved "https://registry.yarnpkg.com/inspectpack/-/inspectpack-4.3.1.tgz#64c5a965ce929fc9ccd19b604b52ebf4247e630f"
+  integrity sha512-EF8MsrIxEmjG6uuo3bKIAzAaRDp1vq+gLG9oZ+D50kaQJnQOwwJp2MPvBk6GslUkIO64u524LwbzRv0AYd0qBQ==
   dependencies:
     chalk "^3.0.0"
     fp-ts "^2.3.1"
@@ -6111,9 +6111,9 @@ io-ts-reporters@^1.0.0:
     io-ts "^2.0.0"
 
 io-ts@^2.0.0, io-ts@^2.0.3:
-  version "2.0.5"
-  resolved "https://registry.yarnpkg.com/io-ts/-/io-ts-2.0.5.tgz#e6e3db9df8b047f9cbd6b69e7d2ad3e6437a0b13"
-  integrity sha512-pL7uUptryanI5Glv+GUv7xh+aLBjxGEDmLwmEYNSx0yOD3djK0Nw5Bt0N6BAkv9LadOUU7QKpRsLcqnTh3UlLA==
+  version "2.0.6"
+  resolved "https://registry.yarnpkg.com/io-ts/-/io-ts-2.0.6.tgz#49e65cb8508ace0329a45bfa94cd9d29d1e0cce5"
+  integrity sha512-WNfGzm4csMVwL4hX6QlpQWu65SV6GmOUtDo259GKlLYH1cC5bpOENgYHqQIRJ9uR3FuU1RQKDke5STwHZAn3KA==
 
 ip@^1.1.4:
   version "1.1.5"
@@ -10159,7 +10159,21 @@ react-helmet-async@^1.0.4:
     react-fast-compare "^2.0.4"
     shallowequal "^1.1.0"
 
-react-hot-loader@^4.12.18, react-hot-loader@^4.3.6:
+react-hot-loader@^4.12.19:
+  version "4.12.19"
+  resolved "https://registry.yarnpkg.com/react-hot-loader/-/react-hot-loader-4.12.19.tgz#99a1c763352828f404fa51cd887c5e16bb5b74d1"
+  integrity sha512-p8AnA4QE2GtrvkdmqnKrEiijtVlqdTIDCHZOwItkI9kW51bt5XnQ/4Anz8giiWf9kqBpEQwsmnChDCAFBRyR/Q==
+  dependencies:
+    fast-levenshtein "^2.0.6"
+    global "^4.3.0"
+    hoist-non-react-statics "^3.3.0"
+    loader-utils "^1.1.0"
+    prop-types "^15.6.1"
+    react-lifecycles-compat "^3.0.4"
+    shallowequal "^1.1.0"
+    source-map "^0.7.3"
+
+react-hot-loader@^4.3.6:
   version "4.12.18"
   resolved "https://registry.yarnpkg.com/react-hot-loader/-/react-hot-loader-4.12.18.tgz#a9029e34af2690d76208f9a35189d73c2dfea6a7"
   integrity sha512-qYD0Qi9lIbg9jLyfmodfqvAQqCBsoPKxAhca8Nxvy2/2pO5Q9r2kM28jN0bbbSnhwK8dJ7FjsfVtXKOxMW+bqw==
