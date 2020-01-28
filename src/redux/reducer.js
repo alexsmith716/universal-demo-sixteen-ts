@@ -9,6 +9,7 @@ import counterPreloaded from './modules/counterPreloaded';
 import device from './modules/device';
 import filterableTable from './modules/filterableTable';
 import info from './modules/info';
+import infoAlert from './modules/infoAlert';
 import lineChart from './modules/lineChart';
 // import notifs from './modules/notifs';
 // import online from './modules/online';
@@ -31,6 +32,7 @@ export default function rootReducer() {
       AboutOneMultireducerFilterableTable2: filterableTable,
     }),
     info,
+    infoAlert,
     lineChartCollection: multireducer({
       AboutTwoMultireducerLineChart1: lineChart,
       AboutTwoMultireducerLineChart2: lineChart,

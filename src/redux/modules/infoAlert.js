@@ -1,8 +1,8 @@
 // Actions
 // -------------------
-const LOAD = 'redux-example/info/LOAD';
-const LOAD_SUCCESS = 'redux-example/info/LOAD_SUCCESS';
-const LOAD_FAIL = 'redux-example/info/LOAD_FAIL';
+const LOAD = 'redux-example/infoAlert/LOAD';
+const LOAD_SUCCESS = 'redux-example/infoAlert/LOAD_SUCCESS';
+const LOAD_FAIL = 'redux-example/infoAlert/LOAD_FAIL';
 
 import { mockAPI, getSomeAsyncData } from '../../utils/mockAPI';
 
@@ -18,16 +18,16 @@ export default function reducer(state = initialState, action = {}) {
   switch (action.type) {
 
     case LOAD:
-      console.log('>>>>>>>>>>>>>>>> INFO > LOAD > REDUCER > state: ', state);
-      console.log('>>>>>>>>>>>>>>>> INFO > LOAD > REDUCER > action: ', action);
+      console.log('>>>>>>>>>>>>>>>> INFOALERT > LOAD > REDUCER > state: ', state);
+      console.log('>>>>>>>>>>>>>>>> INFOALERT > LOAD > REDUCER > action: ', action);
       return {
         ...state,
         loading: true,
       };
 
     case LOAD_SUCCESS:
-      console.log('>>>>>>>>>>>>>>>> INFO > LOAD_SUCCESS > REDUCER > state: ', state);
-      console.log('>>>>>>>>>>>>>>>> INFO > LOAD_SUCCESS > REDUCER > action: ', action);
+      console.log('>>>>>>>>>>>>>>>> INFOALERT > LOAD_SUCCESS > REDUCER > state: ', state);
+      console.log('>>>>>>>>>>>>>>>> INFOALERT > LOAD_SUCCESS > REDUCER > action: ', action);
       return {
         ...state,
         loading: false,
@@ -36,8 +36,8 @@ export default function reducer(state = initialState, action = {}) {
       };
 
     case LOAD_FAIL:
-      console.log('>>>>>>>>>>>>>>>> INFO > LOAD_FAIL > REDUCER > state: ', state);
-      console.log('>>>>>>>>>>>>>>>> INFO > LOAD_FAIL > REDUCER > action: ', action);
+      console.log('>>>>>>>>>>>>>>>> INFOALERT > LOAD_FAIL > REDUCER > state: ', state);
+      console.log('>>>>>>>>>>>>>>>> INFOALERT > LOAD_FAIL > REDUCER > action: ', action);
       return {
         ...state,
         loading: false,
@@ -55,13 +55,13 @@ export default function reducer(state = initialState, action = {}) {
 // Actions (action creators)
 // -------------------
 export function isLoaded(globalState) {
-  return globalState.info && globalState.info.loaded;
+  return globalState.infoAlert && globalState.infoAlert.loaded;
 }
 
 export function load() {
-  console.log('>>>>>>>>>>>>>>>> REDUX > INFO > load() +++++++++++++++++++++++++++');
-  let location = 'https://api.github.com/feeds';
-  // let location = 'https://www.metaweather.com/api/location/2459115/';
+  console.log('>>>>>>>>>>>>>>>> INFOALERT > load() +++++++++++++++++++++++++++');
+  // let location = 'https://api.github.com/feeds';
+  let location = 'https://www.metaweather.com/api/location/2459115/';
   return {
     types: [LOAD, LOAD_SUCCESS, LOAD_FAIL],
     // promise: () => mockAPI(() => getRandomInt(), 1000 )

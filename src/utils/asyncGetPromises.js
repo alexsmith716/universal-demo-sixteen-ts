@@ -4,12 +4,14 @@ function getPromises(match, store) {
   // const arr = match.map(m => m.route);
   // console.log('>>>>>>>>>>>>>>>> asyncGetPromises > getPromises > match.map(m.route): ', arr);
   // ----------------------------------------------------------------------------
+  // 'Promise.all' expects an ARRAY of Promises
+  // initial value for the accumulator????
   return match.map(m => m.route).reduce(async (a, i) => {
-    if (i.preloadData) {
-      console.log('>>>>>>>>>>>>>>>> asyncGetPromises > getPromises > YESSSSSS');
-      return await i.preloadData(store);
+    if (i.loadData) {
+      console.log('>>>>>>>>>>>>>>>> asyncGetPromises > getPromises > loadData > YESSSSSS');
+      return await i.loadData(store);
     } else {
-      console.log('>>>>>>>>>>>>>>>> asyncGetPromises > getPromises > NOOOOOOO ');
+      console.log('>>>>>>>>>>>>>>>> asyncGetPromises > getPromises > loadData > NOOOOOOO ');
       return Promise.resolve(null);
     }
   })

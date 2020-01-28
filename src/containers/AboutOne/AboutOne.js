@@ -15,15 +15,6 @@ import TemperatureCalculator from '../../components/widgets/LiftingStateUp/Tempe
 import CounterPreloaded from '../../components/widgets/Counter/CounterPreloaded';
 import CounterMultireducer from '../../components/widgets/Counter/CounterMultireducer';
 
-@provideHooks({
-  fetch: async ({ store: { dispatch, getState }}) => {
-    const state = getState();
-    if (state.online) {
-      console.log('>>>>>>>>>>>>>>>> AboutOne > @provideHooks > state.online: ', state.online);
-    }
-  }
-})
-
 class AboutOne extends Component {
 
   render() {

@@ -3,11 +3,15 @@ import { Helmet } from 'react-helmet-async';
 import { InfoBar } from '../../components';
 
 import { isLoaded as isInfoLoaded, load as loadInfo } from '../../redux/modules/info';
+import { isLoaded as isInfoAlertLoaded, load as loadInfoAlert } from '../../redux/modules/infoAlert';
 
 async function preloadData(store, getState) {
   console.log('>>>>>>>>>>>>>>>> HOME > preloadData() <<<<<<<<<<<<<<<<<<<')
   await store.dispatch(loadInfo()).catch(() => null);
+  await store.dispatch(loadInfoAlert()).catch(() => null);
 }
+
+export { preloadData };
 
 // @provideHooks({
 //   fetch: async ({ store: { dispatch, getState } }) => {
@@ -95,5 +99,3 @@ export class Home extends Component {
     );
   }
 }
-
-export { preloadData };
