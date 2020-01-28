@@ -1,9 +1,26 @@
 import React, { Component } from 'react';
 import { Helmet } from 'react-helmet-async';
+import { connect } from 'react-redux';
+import { load } from '../../redux/modules/infoAlert';
+import Loading from '../../components/Loading/Loading';
+
+@connect(
+  (state) => ({ 
+    data: state.infoAlert.data,
+    loading: state.infoAlert.loading,
+    error: state.infoAlert.error,
+    errorResponse: state.infoAlert.errorResponse,
+  }),
+  { load }
+)
 
 class AboutFour extends Component {
 
   render() {
+
+    const { data, loading, load, error, errorResponse } = this.props;
+
+    console.log('>>>>>>>>>>>>>>>>>>>>>>>> InfoBar > this.props.data: ', this.props.data);
 
     const aboutImageMain = require('../../theme/images/about-750-450.png');
     const aboutImageOurCustomers = require('../../theme/images/about-500-300.png');
@@ -17,17 +34,46 @@ class AboutFour extends Component {
 
         <h1 className={styles.uniqueColor}>About Four</h1>
 
-        <div className="row">
-          <div className="col-lg-6">
-            <img className="img-fluid rounded mb-4" src={aboutImageMain} alt="" />
-          </div>
-          <div className="col-lg-6">
-            <h2 className="font-tester-font2">About Four Modern Business</h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sed voluptate nihil eum consectetur similique? Consectetur, quod, incidunt, harum nisi dolores delectus reprehenderit voluptatem perferendis dicta dolorem non blanditiis ex fugiat.</p>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Saepe, magni, aperiam vitae illum voluptatum aut sequi impedit non velit ab ea pariatur sint quidem corporis eveniet. Odit, temporibus reprehenderit dolorum!</p>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Et, consequuntur, modi mollitia corporis ipsa voluptate corrupti eum ratione ex ea praesentium quibusdam? Aut, in eum facere corrupti necessitatibus perspiciatis quis?</p>
+        {/* (>>>>>>>>>>>>>>>>>>>>>> NEW STUFF >>>>>>>>>>>>>>>>>>>>>>>>) */}
+
+        <div className="d-flex justify-content-center bg-color-mediumorchid-1">
+          <div className="text-center m-2">
+          {/* (>>>>>>>>>>>>>>>>>>>>>> LOADING >>>>>>>>>>>>>>>>>>>>>>>>) */}
+
+          {loading && (
+              <Loading text="Loading" />
+            )}
+
+          {/* (>>>>>>>>>>>>>>>>>>>>>> ERROR >>>>>>>>>>>>>>>>>>>>>>>>) */}
+
+          {error && (
+
+              <div className="alert alert-danger text-center" role="alert">RENDERING ERROR<br/><span>{`Message: ${errorResponse.message}`}</span><br/><span>{`Url: ${errorResponse.documentation_url}`}</span></div>
+
+            )}
+
+          {/* (>>>>>>>>>>>>>>>>>>>>>>>> LOADED >>>>>>>>>>>>>>>>>>>>>>>>) */}
+
+          {!loading && (
+
+              <div>
+                <div className="card-title">
+                  <h5>InfoBar message: '<span>{data ? data.message : 'no message!'}</span>'</h5>
+
+                  <h6>{data && new Date(data.time).toString()}</h6>
+
+                  <h6>{data && data.timeElapsed}</h6>
+                </div>
+
+                <button type="button" className="btn btn-primary" onClick={load}>
+                  Reload from server
+                </button>
+              </div>
+            )}
           </div>
         </div>
+
+        {/* (>>>>>>>>>>>>>>>>>>>>>> OLD STUFF >>>>>>>>>>>>>>>>>>>>>>>>) */}
 
         <h2 className="font-tester-font2">Our Team</h2>
 
