@@ -16,8 +16,6 @@ const initialState = {
   data: null,
 };
 
-// "concat" method adds multiple elements to the array and returns a copy
-
 // Reducer
 // -------------------
 export default function reducer(state = initialState, action = {}) {
@@ -88,43 +86,6 @@ export function loadFunc(req) {
     promise: ({ client }) => client.get(req.request)
   };
 };
-
-//  https://developer.mozilla.org/en-US/docs/Web/API/Body/blob
-// Promise: an object that represents an intermediate state of an operation
-// Promise: a result of some kind to be returned
-// 'async' keyword: turns any function into a promise (invoking the function returns a promise)
-// '.then()' block consumes value returned when promise fulfills
-// 'await' keyword: placed before promise-based function to pause code until promise fulfills
-// use 'await' when calling any function that returns a Promise
-
-// error handling:
-// retry fetching the asset ...
-// show a default error message ...
-// prompt user to to something else (provide a different asset URL) ...
-// using synchronous 'try...catch' structure with async/await
-
-// thenable API
-
-// going to 'clientMiddleware' > 'YES promise'
-// going to Reducer switch action 'LOAD'
-// going to API 'postRequestConcat'
-// going to API 'postRequestConcatResolveRejectPromise' and returning Promise
-// going to 'clientMiddleware' > 'actionPromise'
-// going to 'LineChart' > 'mounting' lifecycle
-// >>>>>>>>>> API RESOLVED ?
-// going to API 'postRequestConcatExport' and returning response
-// going to Reducer 'postRequestConcatExport' and response received from API
-// going to Reducer switch action 'LOAD_SUCCESS'
-// >>>>>>>>>> API REJECTED ?
-// going to Reducer try/catch block > catch (error) > Promise.reject(error)
-// going to Reducer switch action 'LOAD_FAIL'
-
-// when promise rejects control jumps to the closest rejection handler
-
-// best tool for the job
-// may not need sync 'generator pattern' for code flow
-// may not need control to wait until promise settles
-// real, real-world practice using promises & async/await
 
 export function addNewDataFunc(req) {
   return {

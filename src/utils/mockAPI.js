@@ -315,7 +315,7 @@ export async function getSomeAsyncData(location) {
   // doSomeAsyncSyncLikeOperations();
   // await doSomeAsyncSyncLikeOperations();
 
-  const response = await startResolvedRejectedPromise('resolve', 1200);
+  const response = await startResolvedRejectedPromise('resolve', 5200);
   console.log('###### mockAPI > getSomeAsyncData > startResolvedRejectedPromise(1600) response: ', response);
   return response;
 }
