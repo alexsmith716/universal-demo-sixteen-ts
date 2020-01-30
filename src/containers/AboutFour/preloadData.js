@@ -1,8 +1,10 @@
 import { isLoaded as isInfoAlertFourLoaded, load as loadInfoAlertFour } from '../../redux/modules/infoAlertFour';
 
 async function preloadData(store, getState) {
-  console.log('>>>>>>>>>>>>>>>> ABOUTFOUR > preloadData() <<<<<<<<<<<<<<<<<<<')
-  await store.dispatch(loadInfoAlertFour());
+  console.log('>>>>>>>>>>>>>>>> AboutFour > preloadData > loadInfoAlertFour?: ', isInfoAlertFourLoaded(store.getState()))
+  if (!isInfoAlertFourLoaded(store.getState())) {
+    await store.dispatch(loadInfoAlertFour());
+  }
 }
 
 export { preloadData };
