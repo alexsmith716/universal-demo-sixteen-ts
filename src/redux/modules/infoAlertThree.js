@@ -64,16 +64,15 @@ export function load() {
   let location = 'https://www.metaweather.com/api/location/2459115/';
   return {
     types: [LOAD, LOAD_SUCCESS, LOAD_FAIL],
-    // promise: () => mockAPI(() => getRandomInt(), 1000 )
-    promise: () => mockAPI(() => getSomeAsyncData(location))
-    // promise: async () => {
-    //   try {
-    //     const response = await getSomeAsyncData(location);
-    //     return response;
-    //   } catch (error) {
-    //     return Promise.reject(error);
-    //     throw error;
-    //   }
-    // }
+    // await getSomeAsyncData(location);
+    promise: async () => {
+      try {
+        const response = await getSomeAsyncData(location);
+        return response;
+      } catch (error) {
+        return Promise.reject(error);
+        throw error;
+      }
+    }
   };
 };

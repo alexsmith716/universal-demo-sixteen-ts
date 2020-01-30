@@ -1,5 +1,5 @@
 import { isLoaded as isInfoLoaded, load as loadInfo } from '../../redux/modules/info';
-import { isLoaded as isInfoAlertLoaded, load as loadInfoAlert } from '../../redux/modules/infoAlertOne';
+import { isLoaded as isInfoAlertLoaded, load as loadInfoAlert } from '../../redux/modules/infoAlert';
 import { isLoaded as isInfoAlertFourLoaded, load as loadInfoAlertFour } from '../../redux/modules/infoAlertFour';
 
 async function preloadData(store, getState) {
