@@ -1,15 +1,15 @@
 import React, { Component } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { connect } from 'react-redux';
-import { load } from '../../redux/modules/infoAlert';
+import { load } from '../../redux/modules/infoAlertFour';
 import Loading from '../../components/Loading/Loading';
 
 @connect(
   (state) => ({ 
-    data: state.infoAlert.data,
-    loading: state.infoAlert.loading,
-    error: state.infoAlert.error,
-    errorResponse: state.infoAlert.errorResponse,
+    data: state.infoAlertFour.data,
+    loading: state.infoAlertFour.loading,
+    error: state.infoAlertFour.error,
+    errorResponse: state.infoAlertFour.errorResponse,
   }),
   { load }
 )
@@ -20,7 +20,7 @@ class AboutFour extends Component {
 
     const { data, loading, load, error, errorResponse } = this.props;
 
-    console.log('>>>>>>>>>>>>>>>>>>>>>>>> InfoBar > this.props.data: ', this.props.data);
+    console.log('>>>>>>>>>>>>>>>>>>>>>>>> AboutFour > this.props.data: ', this.props);
 
     const aboutImageMain = require('../../theme/images/about-750-450.png');
     const aboutImageOurCustomers = require('../../theme/images/about-500-300.png');

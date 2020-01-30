@@ -2,16 +2,24 @@ import React, { Component } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { InfoBar } from '../../components';
 
-import { isLoaded as isInfoLoaded, load as loadInfo } from '../../redux/modules/info';
-import { isLoaded as isInfoAlertLoaded, load as loadInfoAlert } from '../../redux/modules/infoAlert';
+// import { isLoaded as isInfoLoaded, load as loadInfo } from '../../redux/modules/info';
+// import { isLoaded as isInfoAlertLoaded, load as loadInfoAlert } from '../../redux/modules/infoAlert';
 
-async function preloadData(store, getState) {
-  console.log('>>>>>>>>>>>>>>>> HOME > preloadData() <<<<<<<<<<<<<<<<<<<')
-  await store.dispatch(loadInfo()).catch(() => null);
-  await store.dispatch(loadInfoAlert()).catch(() => null);
-}
-
-export { preloadData };
+// async function preloadData(store, getState) {
+//   console.log('>>>>>>>>>>>>>>>> HOME > preloadData <<<<<<<<<<<<<<<<<<<<<<')
+//   console.log('>>>>>>>>>>>>>>>> HOME > preloadData > isInfoLoaded?: ', isInfoLoaded(store.getState()))
+//   if (!isInfoLoaded(store.getState())) {
+//     await store.dispatch(loadInfo()).catch(() => null);
+//   }
+//   console.log('>>>>>>>>>>>>>>>> HOME > preloadData > isInfoAlertLoaded?: ', isInfoAlertLoaded(store.getState()))
+//   if (!isInfoAlertLoaded(store.getState())) {
+//     await store.dispatch(loadInfoAlert()).catch(() => null);
+//   }
+//   //await store.dispatch(loadInfo()).catch(() => null);
+//   //await store.dispatch(loadInfoAlert()).catch(() => null);
+// }
+// 
+// export { preloadData };
 
 // @provideHooks({
 //   fetch: async ({ store: { dispatch, getState } }) => {
@@ -53,7 +61,7 @@ export class Home extends Component {
 
         {/* --------------- InfoBar ---------------- */}
 
-        <InfoBar />
+        {/* <InfoBar /> */}
 
         <div className="container">
           <div className="row mt-4">
