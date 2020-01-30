@@ -11,6 +11,7 @@ import filterableTable from './modules/filterableTable';
 import info from './modules/info';
 import infoAlert from './modules/infoAlert';
 import infoAlertOne from './modules/infoAlertOne';
+import infoAlertTwo from './modules/infoAlertTwo';
 import infoAlertThree from './modules/infoAlertThree';
 import infoAlertFour from './modules/infoAlertFour';
 import lineChart from './modules/lineChart';
@@ -37,6 +38,7 @@ export default function rootReducer() {
     info,
     infoAlert,
     infoAlertOne,
+    infoAlertTwo,
     infoAlertThree,
     infoAlertFour,
     lineChartCollection: multireducer({
