@@ -46,13 +46,13 @@ export default ({ clientStats }) => async (req, res) => {
   });
 
   // =======================================================================================
-  console.log('>>>>>>>>>>>>>>>>>>>>>>>> SERVER > store.getState(): ', store.getState());
+  console.log('>>>>>>>>>>>>>>>>>>>>>>>> SERVER > store.getState() 1111 ###################################################: ', store.getState());
   const { promises } = await asyncGetPromises(routes, req.path, store);
   console.log('>>>>>>>>>>>>>>>>>>>>>>>> SERVER > promises: ', promises);
 
   Promise.all(promises)
     .then(() => {
-      console.log('>>>>>>>>>>>>>>>>>>>>>>>> SERVER > store.getState(): ', store.getState());
+      console.log('>>>>>>>>>>>>>>>>>>>>>>>> SERVER > store.getState() 2222 ###################################################: ', store.getState());
     })
     .catch(error => {
       console.log('>>>>>>>>>>>>>>>>>>>>>>>> SERVER > Promise.all > ERROR: ', error);
@@ -65,6 +65,7 @@ export default ({ clientStats }) => async (req, res) => {
   }
 
   try {
+    console.log('>>>>>>>>>>>>>>>>>>>>>>>> SERVER > store.getState() 3333 ###################################################: ', store.getState());
 
     // =============================================================================
     // Match routes based on history object:

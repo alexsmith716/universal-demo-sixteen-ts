@@ -10,6 +10,9 @@ import device from './modules/device';
 import filterableTable from './modules/filterableTable';
 import info from './modules/info';
 import infoAlert from './modules/infoAlert';
+import infoAlertOne from './modules/infoAlertOne';
+import infoAlertThree from './modules/infoAlertThree';
+import infoAlertFour from './modules/infoAlertFour';
 import lineChart from './modules/lineChart';
 // import notifs from './modules/notifs';
 // import online from './modules/online';
@@ -33,6 +36,9 @@ export default function rootReducer() {
     }),
     info,
     infoAlert,
+    infoAlertOne,
+    infoAlertThree,
+    infoAlertFour,
     lineChartCollection: multireducer({
       AboutTwoMultireducerLineChart1: lineChart,
       AboutTwoMultireducerLineChart2: lineChart,

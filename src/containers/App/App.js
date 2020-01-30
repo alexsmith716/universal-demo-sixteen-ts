@@ -10,12 +10,30 @@ import qs from 'qs';
 import { Link } from 'react-router-dom';
 
 import { Footer } from '../../components';
-// import { InfoBar } from '../../components';
+import { InfoBar } from '../../components';
 import { ReadmeModal } from '../../components';
 import { FontsModal } from '../../components';
 
 import config from '../../../config/config';
-// import { isLoaded as isInfoLoaded, load as loadInfo } from '../../redux/modules/info';
+
+//import { isLoaded as isInfoLoaded, load as loadInfo } from '../../redux/modules/info';
+//import { isLoaded as isInfoAlertLoaded, load as loadInfoAlert } from '../../redux/modules/infoAlert';
+
+// async function preloadData(store, getState) {
+//   console.log('>>>>>>>>>>>>>>>> APP > preloadData <<<<<<<<<<<<<<<<<<<<<<')
+//   console.log('>>>>>>>>>>>>>>>> APP > preloadData > isInfoLoaded?: ', isInfoLoaded(store.getState()))
+//   // if (!isInfoLoaded(store.getState())) {
+//   //   await store.dispatch(loadInfo()).catch(() => null);
+//   // }
+//   console.log('>>>>>>>>>>>>>>>> APP > preloadData > isInfoAlertLoaded?: ', isInfoAlertLoaded(store.getState()))
+//   // if (!isInfoAlertLoaded(store.getState())) {
+//   //   await store.dispatch(loadInfoAlert()).catch(() => null);
+//   // }
+//   await store.dispatch(loadInfo()).catch(() => null);
+//   // await store.dispatch(loadInfoAlert()).catch(() => null);
+// }
+// 
+// export { preloadData };
 
 @connect(state => ({
   online: state.online,
@@ -161,7 +179,7 @@ export class App extends Component {
 
           {/* --------------- InfoBar ---------------- */}
 
-          {/* <InfoBar /> */}
+          <InfoBar />
 
           {/* --------------- Footer ----------------- */}
 
