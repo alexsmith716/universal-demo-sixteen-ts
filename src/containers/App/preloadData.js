@@ -1,18 +1,22 @@
 import { isLoaded as isInfoLoaded, load as loadInfo } from '../../redux/modules/info';
-import { isLoaded as isInfoAlertOneLoaded, load as loadInfoAlertOne } from '../../redux/modules/infoAlertOne';
+import { isLoaded as isInfoAlertLoaded, load as loadInfoAlert } from '../../redux/modules/infoAlertOne';
+import { isLoaded as isInfoAlertFourLoaded, load as loadInfoAlertFour } from '../../redux/modules/infoAlertFour';
 
 async function preloadData(store, getState) {
-  console.log('>>>>>>>>>>>>>>>> APP > preloadData <<<<<<<<<<<<<<<<<<<<<<')
   console.log('>>>>>>>>>>>>>>>> APP > preloadData > isInfoLoaded?: ', isInfoLoaded(store.getState()))
-  // if (!isInfoLoaded(store.getState())) {
-  //   await store.dispatch(loadInfo()).catch(() => null);
-  // }
-  console.log('>>>>>>>>>>>>>>>> APP > preloadData > isInfoAlertOneLoaded?: ', isInfoAlertOneLoaded(store.getState()))
-  // if (!isInfoAlertOneLoaded(store.getState())) {
-  //   await store.dispatch(loadInfoAlert()).catch(() => null);
-  // }
-  await store.dispatch(loadInfo());
-  await store.dispatch(loadInfoAlertOne());
+  if (!isInfoLoaded(store.getState())) {
+    await store.dispatch(loadInfo());
+  }
+
+  console.log('>>>>>>>>>>>>>>>> APP > preloadData > isInfoAlertLoaded?: ', isInfoAlertLoaded(store.getState()))
+  if (!isInfoAlertLoaded(store.getState())) {
+    await store.dispatch(loadInfoAlert());
+  }
+
+  console.log('>>>>>>>>>>>>>>>> APP > preloadData > isInfoAlertFourLoaded?: ', isInfoAlertFourLoaded(store.getState()))
+  if (!isInfoAlertFourLoaded(store.getState())) {
+    await store.dispatch(loadInfoAlertFour());
+  }
 }
 
 export { preloadData };
