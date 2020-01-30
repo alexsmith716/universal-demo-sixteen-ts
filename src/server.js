@@ -51,7 +51,8 @@ export default ({ clientStats }) => async (req, res) => {
   console.log('>>>>>>>>>>>>>>>>>>>>>>>> SERVER > promises: ', promises);
 
   Promise.all(promises)
-    .then(() => {
+    .then((foo) => {
+      console.log('>>>>>>>>>>>>>>>>>>>>>>>> SERVER > Promise.all(promises) ###################################################: ', foo);
       console.log('>>>>>>>>>>>>>>>>>>>>>>>> SERVER > store.getState() 2222 ###################################################: ', store.getState());
       //
       function hydrate(a) {
