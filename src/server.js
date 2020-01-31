@@ -5,7 +5,6 @@ import { Router, StaticRouter } from 'react-router';
 import { createMemoryHistory } from 'history';
 import { renderRoutes } from 'react-router-config';
 import { CookieStorage, NodeCookiesWrapper } from 'redux-persist-cookie-storage'; 
-import { trigger } from 'redial';
 
 import asyncMatchRoutes from './utils/asyncMatchRoutes';
 import asyncGetPromises from './utils/asyncGetPromises';

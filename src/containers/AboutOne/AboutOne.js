@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Helmet } from 'react-helmet-async';
-import { provideHooks } from 'redial';
 
 // import { ClockHooksCustomJS } from '../../components';
 // import { ClockHooksCustomQ } from '../../components';
