@@ -3,7 +3,6 @@ import ReactDOM from 'react-dom';
 import { Router } from 'react-router';
 import { renderRoutes } from 'react-router-config';
 import {createBrowserHistory} from 'history';
-import { trigger } from 'redial';
 import { HelmetProvider } from 'react-helmet-async';
 
 import localForage from 'localforage';
@@ -81,32 +80,37 @@ const providers = {
     persistConfig
   });
 
-  const triggerHooks = async (_routes, pathname) => {
+  // const triggerHooks = async (_routes, pathname) => {
+  //   spinnerContainer.classList.add('spinner-border');
+  //   const { components, match, params } = await asyncMatchRoutes(_routes, pathname);
+  //   const triggerLocals = {
+  //     ...providers,
+  //     store,
+  //     match,
+  //     params,
+  //     history,
+  //     location: history.location
+  //   };
+  //   // Don't fetch data for initial route, server has already done the work:
+  //   if (window.__PRELOADED__) {
+  //     // Delete initial data so that subsequent data fetches can occur:
+  //     delete window.__PRELOADED__;
+  //   } else {
+  //     // Fetch mandatory data dependencies for 2nd route change onwards:
+  //     await trigger('fetch', components, triggerLocals);
+  //   }
+  //   // Fetch mandatory data dependencies for 2nd route change onwards:
+  //   await trigger('defer', components, triggerLocals);
+  //   spinnerContainer.classList.remove('spinner-border');
+  // };
 
+  const triggerHooks = async () => {
     spinnerContainer.classList.add('spinner-border');
-
-    const { components, match, params } = await asyncMatchRoutes(_routes, pathname);
-    
-    const triggerLocals = {
-      ...providers,
-      store,
-      match,
-      params,
-      history,
-      location: history.location
-    };
-
     // Don't fetch data for initial route, server has already done the work:
     if (window.__PRELOADED__) {
       // Delete initial data so that subsequent data fetches can occur:
       delete window.__PRELOADED__;
-    } else {
-      // Fetch mandatory data dependencies for 2nd route change onwards:
-      await trigger('fetch', components, triggerLocals);
     }
-    // Fetch mandatory data dependencies for 2nd route change onwards:
-    await trigger('defer', components, triggerLocals);
-
     spinnerContainer.classList.remove('spinner-border');
   };
 
@@ -116,7 +120,7 @@ const providers = {
         <AppContainer>
           <Provider store={store} {...providers}>
             <Router history={history}>
-              <RouterTrigger trigger={pathname => triggerHooks(_routes, pathname)}>{renderRoutes(_routes)}</RouterTrigger>
+              <RouterTrigger trigger={pathname => triggerHooks()}>{renderRoutes(_routes)}</RouterTrigger>
             </Router>
           </Provider>
         </AppContainer>
