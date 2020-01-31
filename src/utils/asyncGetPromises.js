@@ -1,6 +1,6 @@
 import { matchRoutes } from 'react-router-config';
 
-// function getPromisesAA(match, store) {
+// function getPromisesAA(match) {
 //   console.log('##################### asyncGetPromises > getPromisesXX > MATCH: ', match);
 //   // -------------------------------
 //   const p = match.map(o => o.route)
@@ -37,20 +37,6 @@ import { matchRoutes } from 'react-router-config';
 //   );
 // }
 
-function getPromisesZZ(match, store) {
-  return match.map(a => {
-    if(a.route.loadData) {
-      const p = a.route.loadData(store)
-      console.log('##################### asyncGetPromises > getPromises > PPPPPPP1: ', p)
-      return p;
-    } else {
-      const pp = Promise.resolve(null)
-      console.log('##################### asyncGetPromises > getPromises > PPPPPPP2: ', pp)
-      return pp;
-    }
-  });
-}
-
 function getPromises(match, store) {
   const arr = match.map(q => q.route.loadData).filter(r => r !== undefined);
   console.log('##################### asyncGetPromises > getPromises > filter > arr: ', arr)
@@ -59,7 +45,6 @@ function getPromises(match, store) {
 
 async function asyncGetPromises(routes, pathname, store) {
   const match = matchRoutes(routes, pathname);
-  // getPromisesAA(match, store);
   const promises = await getPromises(match, store);
   console.log('##################### asyncGetPromises > RETURN promises: ', promises)
   return promises;
