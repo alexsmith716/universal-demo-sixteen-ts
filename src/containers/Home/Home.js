@@ -21,12 +21,6 @@ import { InfoBar } from '../../components';
 // 
 // export { preloadData };
 
-// @provideHooks({
-//   fetch: async ({ store: { dispatch, getState } }) => {
-//      await dispatch(loadInfo()).catch(() => null);
-//   }
-// })
-
 export class Home extends Component {
 
   render() {

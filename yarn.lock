@@ -10378,11 +10378,6 @@ redent@^1.0.0:
     indent-string "^2.1.0"
     strip-indent "^1.0.1"
 
-redial@^0.5.0:
-  version "0.5.0"
-  resolved "https://registry.yarnpkg.com/redial/-/redial-0.5.0.tgz#e690a53a31fb469906d1b52eae4c5dcc2bf346cd"
-  integrity sha1-5pClOjH7RpkG0bUurkxdzCvzRs0=
-
 redux-api-middleware@^3.2.0:
   version "3.2.0"
   resolved "https://registry.yarnpkg.com/redux-api-middleware/-/redux-api-middleware-3.2.0.tgz#6a7a39be4135d9fda68567823f10292b5a227332"
