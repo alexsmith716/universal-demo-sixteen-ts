@@ -1,6 +1,6 @@
 import { matchRoutes } from 'react-router-config';
 
-// function getPromises(match, store) {
+// function getPromisesAA(match, store) {
 //   console.log('##################### asyncGetPromises > getPromisesXX > MATCH: ', match);
 //   // -------------------------------
 //   const p = match.map(o => o.route)
@@ -59,7 +59,7 @@ function getPromises(match, store) {
 
 async function asyncGetPromises(routes, pathname, store) {
   const match = matchRoutes(routes, pathname);
-  // getPromisesXX(match, store);
+  // getPromisesAA(match, store);
   const promises = await getPromises(match, store);
   console.log('##################### asyncGetPromises > RETURN promises: ', promises)
   return promises;

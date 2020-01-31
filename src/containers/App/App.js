@@ -46,14 +46,6 @@ import config from '../../../config/config';
 //   await Promise.resolve(null);
 // }
 
-// @provideHooks({
-//   fetch: async ({ store: { dispatch, getState } }) => {
-//     if (!isInfoLoaded(getState())) {
-//       await dispatch(loadInfo()).catch(() => null);
-//     }
-//   }
-// })
-
 @withRouter
 
 export class App extends Component {

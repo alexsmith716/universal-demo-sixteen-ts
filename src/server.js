@@ -51,9 +51,7 @@ export default ({ clientStats }) => async (req, res) => {
   console.log('>>>>>>>>>>>>>>>>>>>>>>>> SERVER > promises: ', promises);
 
   Promise.all(promises)
-    .then((foo) => {
-      console.log('>>>>>>>>>>>>>>>>>>>>>>>> SERVER > Promise.all(promises) ###################################################: ', foo);
-      console.log('>>>>>>>>>>>>>>>>>>>>>>>> SERVER > store.getState() 2222 ###################################################: ', store.getState());
+    .then(() => {
       //
       function hydrate(a) {
         res.write('<!doctype html>');
@@ -61,23 +59,7 @@ export default ({ clientStats }) => async (req, res) => {
       }
 
       try {
-        console.log('>>>>>>>>>>>>>>>>>>>>>>>> SERVER > store.getState() 3333 ###################################################: ', store.getState());
-
-        // // =============================================================================
-        // // Match routes based on history object:
-        // // Get array of route handler components:
-        // const { components, match } = await asyncMatchRoutes(routes, req.path);
-        // // Define locals to be provided to all lifecycle hooks:
-        // const triggerLocals = {
-        //   ...providers,
-        //   store,
-        //   match,
-        //   history,
-        //   location: history.location
-        // };
-        // // Wait for async data fetching to complete, then render:
-        // await trigger('fetch', components, triggerLocals);
-        // // =============================================================================
+        console.log('>>>>>>>>>>>>>>>>>>>>>>>> SERVER > store.getState() 2222 ###################################################: ', store.getState());
 
         const helmetContext = {};
         const context = {};
