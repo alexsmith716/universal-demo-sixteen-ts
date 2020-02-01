@@ -71,12 +71,12 @@ export function load() {
           // result.message += ' P6.'
           return result;
         }, 
-        error => {
-          // handle rejected promise in action creator (closest rejection handler)
-          console.log('>>>>>>>>>>>>>>>> REDUX > INFO > load() > THEN 2222222 +++++++++++++++++++++++++++');
-          return Promise.reject(error);
-          throw error;
-        }
+        // error => {
+        //   // handle rejected promise in action creator (closest rejection handler)
+        //   console.log('>>>>>>>>>>>>>>>> REDUX > INFO > load() > THEN 2222222 +++++++++++++++++++++++++++');
+        //   return Promise.reject(error);
+        //   throw error;
+        // }
       )
       // .catch(error => {
       //   // handle rejected promise in action creator (closest rejection handler)

@@ -110,8 +110,4 @@ export default ({ clientStats }) => async (req, res) => {
         hydrate(flushChunks(clientStats, { chunkNames: flushChunkNames() }));
       }
     })
-    //
-    .catch(error => {
-      console.log('>>>>>>>>>>>>>>>>>>>>>>>> SERVER > Promise.all > ERROR: ', error);
-    })
 };
