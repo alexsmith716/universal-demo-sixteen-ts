@@ -4,7 +4,7 @@ const LOAD = 'redux-example/info/LOAD';
 const LOAD_SUCCESS = 'redux-example/info/LOAD_SUCCESS';
 const LOAD_FAIL = 'redux-example/info/LOAD_FAIL';
 
-import { mockAPI, getSomeAsyncData } from '../../utils/mockAPI';
+import { postRequestConcatExportASYNC } from '../../utils/mockAPI';
 
 const initialState = {
   loaded: false,
@@ -64,15 +64,44 @@ export function load() {
   // let location = 'https://www.metaweather.com/api/location/2459115/';
   return {
     types: [LOAD, LOAD_SUCCESS, LOAD_FAIL],
-    // await getSomeAsyncData(location);
-    promise: async () => {
-      try {
-        const response = await getSomeAsyncData(location);
-        return response;
-      } catch (error) {
-        return Promise.reject(error);
-        throw error;
-      }
-    }
+    promise: () => postRequestConcatExportASYNC('resolve', true, 6600)
+      .then(
+        result => {
+          console.log('>>>>>>>>>>>>>>>> REDUX > INFO > load() > THEN 1111111 +++++++++++++++++++++++++++');
+          // result.message += ' P6.'
+          return result;
+        }, 
+        error => {
+          // handle rejected promise in action creator (closest rejection handler)
+          console.log('>>>>>>>>>>>>>>>> REDUX > INFO > load() > THEN 2222222 +++++++++++++++++++++++++++');
+          return Promise.reject(error);
+          throw error;
+        }
+      )
+      // .catch(error => {
+      //   // handle rejected promise in action creator (closest rejection handler)
+      //   console.log('>>>>>>>>>>>>>>>> REDUX > INFO > addNewDataFunc() > CATCH:ERROR:', error);
+      //   return Promise.reject(error);
+      //   throw error;
+      // })
   };
 };
+
+// export function load() {
+//   console.log('>>>>>>>>>>>>>>>> REDUX > INFO > load() +++++++++++++++++++++++++++');
+//   let location = 'https://api.github.com/feeds';
+//   // let location = 'https://www.metaweather.com/api/location/2459115/';
+//   return {
+//     types: [LOAD, LOAD_SUCCESS, LOAD_FAIL],
+//     // await getSomeAsyncData(location);
+//     promise: async () => {
+//       try {
+//         const response = await getSomeAsyncData(location);
+//         return response;
+//       } catch (error) {
+//         return Promise.reject(error);
+//         throw error;
+//       }
+//     }
+//   };
+// };
