@@ -10,35 +10,16 @@ import Login from './containers/Login/Loadable';
 import Register from './containers/Register/Loadable';
 
 import { preloadData as preloadDataApp } from './containers/App/preloadData';
-import { preloadData as preloadDataAboutThree } from './containers/AboutThree/preloadData';
-import { preloadData as preloadDataAboutFour } from './containers/AboutFour/preloadData';
+//import { preloadData as preloadDataAboutThree } from './containers/AboutThree/preloadData';
+//import { preloadData as preloadDataAboutFour } from './containers/AboutFour/preloadData';
 
 console.log('DDDDDDDDDD > preloadDataApp: ', preloadDataApp);               // [AsyncFunction: Ye]
-console.log('DDDDDDDDDD > preloadDataAboutThree: ', preloadDataAboutThree)  // [AsyncFunction: Qe]
-console.log('DDDDDDDDDD > preloadDataAboutFour: ', preloadDataAboutFour)    // [AsyncFunction: Ze]
+//console.log('DDDDDDDDDD > preloadDataAboutThree: ', preloadDataAboutThree)  // [AsyncFunction: Qe]
+//console.log('DDDDDDDDDD > preloadDataAboutFour: ', preloadDataAboutFour)    // [AsyncFunction: Ze]
 
 import './theme/scss/global/styles.global.scss';
 
 export const routes = [
-  {
-    component: App, 
-    loadData: preloadDataApp,
-    routes: [
-      { path: '/', exact: true, component: Home, },
-      { path: '/about', component: About },
-      { path: '/aboutone', component: AboutOne },
-      { path: '/abouttwo', component: AboutTwo },
-      { path: '/aboutthree', component: AboutThree, loadData: preloadDataAboutThree },
-      { path: '/aboutfour', component: AboutFour, loadData: preloadDataAboutFour },
-      { path: '/stickyfooter', component: StickyFooter },
-      { path: '/login', component: Login },
-      { path: '/register', component: Register },
-      { component: NotFound }
-    ]
-  }
-];
-
-export const routesX = [
   {
     component: App, 
     loadData: preloadDataApp,

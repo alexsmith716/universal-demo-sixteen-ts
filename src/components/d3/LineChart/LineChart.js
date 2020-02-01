@@ -28,10 +28,6 @@ class LineChart extends Component {
     this.inputYValueRef = createRef();
   }
 
-  // state = {
-  //   prevProps: this.props
-  // };
-
   componentDidMount() {
     const { data } = this.props;
     if (data === null) {
@@ -42,19 +38,6 @@ class LineChart extends Component {
       drawVisualization(data, containerTarget);
     }
   }
-
-  // static getDerivedStateFromProps(props, state) {
-  //   const { prevProps } = state;
-  //   return null;
-  // };
-
-  // shouldComponentUpdate(nextProps, nextState) {
-  //   return nextProps;
-  // };
-
-  // getSnapshotBeforeUpdate(prevProps, prevState) {
-  //   return null;
-  // }
 
   componentDidUpdate(prevProps, prevState, snapshot) {
     const { loading, loaded, error, errorResponse, data } = this.props;

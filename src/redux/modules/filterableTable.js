@@ -71,6 +71,9 @@ export default function reducer(state = initialState, action = {}) {
   }
 };
 
+// Actions (action creators)
+// -------------------------------------------------------------------------------------
+// load({ request: dropDownOptionSelected });
 export function load(value) {
   return {
     types: [LOAD, LOAD_SUCCESS, LOAD_FAIL],

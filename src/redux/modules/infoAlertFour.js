@@ -68,7 +68,7 @@ export function load() {
     // promise: () => mockAPI(() => getSomeAsyncData(location))
     promise: async () => {
       try {
-        const response = await getSomeAsyncData(location);
+        const response = await getSomeAsyncData('resolve');
         return response;
       } catch (error) {
         return Promise.reject(error);

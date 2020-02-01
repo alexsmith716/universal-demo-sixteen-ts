@@ -8,7 +8,6 @@ const ADD_NEW_DATA_LOAD = 'redux-example/lineChart/ADD_NEW_DATA_LOAD';
 const ADD_NEW_DATA_LOAD_SUCCESS = 'redux-example/lineChart/ADD_NEW_DATA_LOAD_SUCCESS';
 const ADD_NEW_DATA_LOAD_FAIL = 'redux-example/lineChart/ADD_NEW_DATA_LOAD_FAIL';
 
-// import { mockAPI, postRequestConcatExportASYNC, postRequestConcatExportSYNC } from '../../utils/mockAPI';
 import { postRequestConcatExportASYNC } from '../../utils/mockAPI';
 
 const initialState = {
@@ -79,7 +78,7 @@ export default function reducer(state = initialState, action = {}) {
 }
 
 // Actions (action creators)
-// -------------------
+// -------------------------------------------------------------------------------------
 export function loadFunc(req) {
   return {
     types: [LOAD, LOAD_SUCCESS, LOAD_FAIL],
@@ -90,7 +89,7 @@ export function loadFunc(req) {
 export function addNewDataFunc(req) {
   return {
     types: [ADD_NEW_DATA_LOAD, ADD_NEW_DATA_LOAD_SUCCESS, ADD_NEW_DATA_LOAD_FAIL],
-    promise: () => postRequestConcatExportASYNC(req)
+    promise: () => postRequestConcatExportASYNC('resolve', true, 1600, req)
       .then(result => {
         result.message += ' P4,'
         return result;
@@ -116,18 +115,3 @@ export function addNewDataFunc(req) {
       // })
   };
 }
-
-// export function addNewDataFuncSYNC(req) {
-//   return {
-//     types: [ADD_NEW_DATA_LOAD, ADD_NEW_DATA_LOAD_SUCCESS, ADD_NEW_DATA_LOAD_FAIL],
-//     promise: async () => {
-//       try {
-//         const response = await postRequestConcatExportSYNC(req);
-//         return response;
-//       } catch (error) {
-//         return Promise.reject(error);
-//         throw error;
-//       }
-//     }
-//   };
-// }
