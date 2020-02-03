@@ -6,3 +6,14 @@
 
 https://reactjs.org/docs/react-router.html
 https://github.com/ReactTraining/react-router/tree/master/packages/react-router-redux
+
+mongoose
+
+terser-webpack-plugin
+rimraf
+
+lint-staged
+eslint-plugin-react
+eslint-plugin-import
+
+workbox-webpack-plugin
