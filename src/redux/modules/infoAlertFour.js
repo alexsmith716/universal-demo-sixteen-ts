@@ -4,7 +4,7 @@ const LOAD = 'redux-example/infoAlertFour/LOAD';
 const LOAD_SUCCESS = 'redux-example/infoAlertFour/LOAD_SUCCESS';
 const LOAD_FAIL = 'redux-example/infoAlertFour/LOAD_FAIL';
 
-import { mockAPI, getSomeAsyncData } from '../../utils/mockAPI';
+import { postRequestConcatExportASYNC } from '../../utils/mockAPI';
 
 const initialState = {
   loaded: false,
@@ -60,20 +60,16 @@ export function isLoaded(globalState) {
 
 export function load() {
   console.log('>>>>>>>>>>>>>>>> INFOALERTFOUR > load() +++++++++++++++++++++++++++');
-  // let location = 'https://api.github.com/feeds';
-  let location = 'https://www.metaweather.com/api/location/2459115/';
+  let location = 'https://api.github.com/feeds';
+  // let location = 'https://www.metaweather.com/api/location/2459115/';
   return {
     types: [LOAD, LOAD_SUCCESS, LOAD_FAIL],
-    // await getSomeAsyncData(location);
-    // promise: () => mockAPI(() => getSomeAsyncData(location))
-    promise: async () => {
-      try {
-        const response = await getSomeAsyncData('resolve');
-        return response;
-      } catch (error) {
-        return Promise.reject(error);
-        throw error;
-      }
-    }
+    promise: () => postRequestConcatExportASYNC('resolve', true, 1500)
+      .then(
+        result => {
+          console.log('>>>>>>>>>>>>>>>> INFOALERTFOUR > load() > THEN > RESULT: ', result);
+          return result;
+        }, 
+      )
   };
 };
