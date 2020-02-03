@@ -15,35 +15,11 @@ import { FontsModal } from '../../components';
 
 import config from '../../../config/config';
 
-//import { isLoaded as isInfoLoaded, load as loadInfo } from '../../redux/modules/info';
-//import { isLoaded as isInfoAlertLoaded, load as loadInfoAlert } from '../../redux/modules/infoAlert';
-
-// async function preloadData(store, getState) {
-//   console.log('>>>>>>>>>>>>>>>> APP > preloadData <<<<<<<<<<<<<<<<<<<<<<')
-//   console.log('>>>>>>>>>>>>>>>> APP > preloadData > isInfoLoaded?: ', isInfoLoaded(store.getState()))
-//   // if (!isInfoLoaded(store.getState())) {
-//   //   await store.dispatch(loadInfo()).catch(() => null);
-//   // }
-//   console.log('>>>>>>>>>>>>>>>> APP > preloadData > isInfoAlertLoaded?: ', isInfoAlertLoaded(store.getState()))
-//   // if (!isInfoAlertLoaded(store.getState())) {
-//   //   await store.dispatch(loadInfoAlert()).catch(() => null);
-//   // }
-//   await store.dispatch(loadInfo()).catch(() => null);
-//   // await store.dispatch(loadInfoAlert()).catch(() => null);
-// }
-// 
-// export { preloadData };
-
 @connect(state => ({
   online: state.online,
   userAgent: state.device.userAgent,
   isBot: state.device.isBot
 }))
-
-// async function preloadData(store) {
-//   console.log('>>>>>>>>>>>>>>>> APP > preloadData() <<<<<<<<<<<<<<<<<<<')
-//   await Promise.resolve(null);
-// }
 
 @withRouter
 
@@ -201,3 +177,13 @@ export class App extends Component {
     );
   }
 }
+
+// const mapStateToProps = (state) => {
+//   return {
+//     online: state.online,
+//     userAgent: state.device.userAgent,
+//     isBot: state.device.isBot
+//   };
+// };
+// 
+// export connect(mapStateToProps)(App);
