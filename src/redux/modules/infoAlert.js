@@ -4,7 +4,7 @@ const LOAD = 'redux-example/infoAlert/LOAD';
 const LOAD_SUCCESS = 'redux-example/infoAlert/LOAD_SUCCESS';
 const LOAD_FAIL = 'redux-example/infoAlert/LOAD_FAIL';
 
-import { mockAPI, getSomeAsyncData } from '../../utils/mockAPI';
+import { postRequestConcatExportASYNC } from '../../utils/mockAPI';
 
 const initialState = {
   loaded: false,
@@ -64,15 +64,12 @@ export function load() {
   let location = 'https://www.metaweather.com/api/location/2459115/';
   return {
     types: [LOAD, LOAD_SUCCESS, LOAD_FAIL],
-    // await getSomeAsyncData(location);
-    promise: async () => {
-      try {
-        const response = await getSomeAsyncData('resolve');
-        return response;
-      } catch (error) {
-        return Promise.reject(error);
-        throw error;
-      }
-    }
+    promise: () => postRequestConcatExportASYNC('resolve', true, 1600)
+      .then(
+        result => {
+          console.log('>>>>>>>>>>>>>>>> INFOALERT > load() > THEN > RESULT: ', result);
+          return result;
+        }, 
+      )
   };
 };

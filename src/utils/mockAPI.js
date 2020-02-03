@@ -1,9 +1,4 @@
 
-// In REST, both 4xx and 5xx types of codes denote an error
-// The main difference between the two is whose fault that error is
-// A 4xx code indicates an error caused by the user,
-//  5xx codes tell the client that they did everything correctly and it's the server itself who caused the problem
-
 function postRequestConcatResolveRejectPromise(resolveReject, requestFound, delay, req) {
   const promise = new Promise((resolve, reject) => {
     setTimeout(() => {
@@ -105,50 +100,9 @@ export function postRequestConcatExportASYNC(resolveReject, requestFound, delay,
 
       result.value === 'reject' ? resolveRejectedPromise.message += ' P1 After An Error!' : null;
       
-
       return resolveRejectedPromise;
     });
 
   return thenProm;
   // return promise;
-}
-
-// =======================================================================
-
-function startResolvedRejectedPromise(v, delay) {
-  return new Promise((resolve, reject) => {
-    setTimeout(() => {
-      if (v === 'resolve') {
-        resolve({
-          value: `${v}`,
-          time: Date.now(),
-          delay: `${delay}`,
-          message: 'RESOLVED! This came from the mock API.'
-        });
-      } else {
-        reject({
-          value: `${v}`,
-          time: Date.now(),
-          delay: `${delay}`,
-          message: 'REJECTED! This came from the mock API.'
-        });
-      }
-    }, delay);
-  });
-};
-
-export async function getSomeAsyncData(location) {
-
-  console.log('###### mockAPI > getSomeAsyncData > location: ', location);
-
-  const response = await startResolvedRejectedPromise('resolve', 5200);
-  console.log('###### mockAPI > getSomeAsyncData > startResolvedRejectedPromise(5200) response: ', response);
-  return response;
-}
-
-export function mockAPI(doWhat, delay) {
-  console.log('###### export function mockAPI <<<<<<<<<<<<<<<<<<<<<<<');
-  return new Promise(( resolve ) => {
-    setTimeout( () => resolve( doWhat() ), delay);
-  });
 }

@@ -4,7 +4,7 @@ const LOAD = 'redux-example/infoAlertOne/LOAD';
 const LOAD_SUCCESS = 'redux-example/infoAlertOne/LOAD_SUCCESS';
 const LOAD_FAIL = 'redux-example/infoAlertOne/LOAD_FAIL';
 
-import { mockAPI, getSomeAsyncData } from '../../utils/mockAPI';
+import { postRequestConcatExportASYNC } from '../../utils/mockAPI';
 
 const initialState = {
   loaded: false,
@@ -60,19 +60,16 @@ export function isLoaded(globalState) {
 
 export function load() {
   console.log('>>>>>>>>>>>>>>>> INFOALERTONE > load() +++++++++++++++++++++++++++');
-  // let location = 'https://api.github.com/feeds';
-  let location = 'https://www.metaweather.com/api/location/2459115/';
+  let location = 'https://api.github.com/feeds';
+  // let location = 'https://www.metaweather.com/api/location/2459115/';
   return {
     types: [LOAD, LOAD_SUCCESS, LOAD_FAIL],
-    // await getSomeAsyncData(location);
-    promise: async () => {
-      try {
-        const response = await getSomeAsyncData(location);
-        return response;
-      } catch (error) {
-        return Promise.reject(error);
-        throw error;
-      }
-    }
+    promise: () => postRequestConcatExportASYNC('resolve', true, 3600)
+      .then(
+        result => {
+          console.log('>>>>>>>>>>>>>>>> INFOALERTONE > load() > THEN > RESULT: ', result);
+          return result;
+        }, 
+      )
   };
 };
