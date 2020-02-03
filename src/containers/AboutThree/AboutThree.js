@@ -1,11 +1,25 @@
 import React, { Component } from 'react';
 import { Helmet } from 'react-helmet-async';
-
+import { connect } from 'react-redux';
+import { load as loadInfo } from '../../redux/modules/info';
+import Loading from '../../components/Loading/Loading';
 // import { DragAndDrop } from '../../components';
+
+@connect(
+  (state) => ({ 
+    data: state.info.data,
+    loading: state.info.loading,
+    error: state.info.error,
+    errorResponse: state.info.errorResponse,
+  }),
+  { loadInfo }
+)
 
 class AboutThree extends Component {
 
   render() {
+
+    const { data, loading, loadInfo, error, errorResponse } = this.props;
 
     const aboutImageMain = require('../../theme/images/about-750-450.png');
     const aboutImageOurCustomers = require('../../theme/images/about-500-300.png');
@@ -19,7 +33,48 @@ class AboutThree extends Component {
 
         <h1 className={styles.uniqueColor}>About Three</h1>
 
-        {/* (>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>) */}
+        {/* (>>>>>>>>>>>>>>>>>>>>>> NEW STUFF >>>>>>>>>>>>>>>>>>>>>>>>) */}
+
+        <div className="d-flex justify-content-center bg-color-mediumorchid-1">
+          <div className="text-center m-2">
+          {/* (>>>>>>>>>>>>>>>>>>>>>> LOADING >>>>>>>>>>>>>>>>>>>>>>>>) */}
+
+          {loading && (
+              <Loading text="Loading" />
+            )}
+
+          {/* (>>>>>>>>>>>>>>>>>>>>>> ERROR >>>>>>>>>>>>>>>>>>>>>>>>) */}
+
+          {error && (
+
+              <div className="alert alert-danger text-center" role="alert">RENDERING ERROR<br/><span>{`Message: ${errorResponse.message}`}</span><br/><span>{`Url: ${errorResponse.documentation_url}`}</span></div>
+
+            )}
+
+          {/* (>>>>>>>>>>>>>>>>>>>>>>>> LOADED >>>>>>>>>>>>>>>>>>>>>>>>) */}
+
+          {!loading && (
+
+              <div>
+                <div className="card-title">
+                  <h5>InfoBar message: '<span>{data ? data.message : 'no message!'}</span>'</h5>
+
+                  <h6>{data && new Date(data.time).toString()}</h6>
+
+                  <h6>{data && data.timeElapsed}</h6>
+                </div>
+
+                <button type="button" className="btn btn-primary" onClick={loadInfo}>
+                  Reload from server
+                </button>
+              </div>
+            )}
+          </div>
+        </div>
+
+        {/* (>>>>>>>>>>>>>>>>>>>>>> OLD STUFF >>>>>>>>>>>>>>>>>>>>>>>>) */}
+
+        <h2 className="font-tester-font2">About Three Stuff</h2>
 
         <div className="row">
 
