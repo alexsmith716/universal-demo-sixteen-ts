@@ -9,7 +9,7 @@ import localForage from 'localforage';
 import { getStoredState } from 'redux-persist';
 import { AppContainer } from 'react-hot-loader';
 
-import asyncMatchRoutes from './utils/asyncMatchRoutes';
+import asyncGetPromises from './utils/asyncGetPromises';
 import { Provider } from 'react-redux';
 import { RouterTrigger } from './components';
 import { routes } from './routes';
@@ -17,15 +17,6 @@ import apiClient from './helpers/apiClient';
 import configureStore from './redux/configureStore';
 import isOnline from './utils/isOnline';
 import './js/app';
-
-// https://github.com/zloirock/core-js/tree/master/packages/core-js-compat
-// data about the necessity of core-js modules
-// and API for getting a list of required core-js modules by browserslist query
-// const { list, targets } = require('core-js-compat')({
-//   targets: '> 1%',
-//   filter: 'es.',
-// });
-// console.log(targets);
 
 const persistConfig = {
   key: 'root',
@@ -38,19 +29,13 @@ const persistConfig = {
     return originalState;
   },
   // redux-persist:
-  // blacklist what state will not be persisted
-  // blacklist: ['notifs'],
-  // whitelist what state will be persisted
-  whitelist: ['device', 'info', 'counter', 'filterableTable', 'temperatureCalculator']
+  whitelist: ['device', 'info', 'infoAlert', 'infoAlertThree', 'infoAlertFour']
 };
 
 const spinnerContainer = document.createElement('div');
-
 spinnerContainer.classList.add('d-inline-flex', 'spinner-layered', 'text-light');
 // spinnerContainer.className = 'd-inline-flex spinner-layered text-light';
-
 const dest = document.getElementById('react-root');
-
 document.body.insertBefore(spinnerContainer, dest);
 
 const client = apiClient();
@@ -64,9 +49,7 @@ const providers = {
   // redux-persist:
   // delays rendering of app UI until persisted state has been retrieved and saved to redux
   const preloadedState = await getStoredState(persistConfig);
-
   const online = window.REDUX_DATA ? true : await isOnline();
-
   const history = createBrowserHistory();
 
   const store = configureStore({
@@ -80,39 +63,29 @@ const providers = {
     persistConfig
   });
 
-  // const triggerHooks = async (_routes, pathname) => {
-  //   spinnerContainer.classList.add('spinner-border');
-  //   const { components, match, params } = await asyncMatchRoutes(_routes, pathname);
-  //   const triggerLocals = {
-  //     ...providers,
-  //     store,
-  //     match,
-  //     params,
-  //     history,
-  //     location: history.location
-  //   };
-  //   // Don't fetch data for initial route, server has already done the work:
-  //   if (window.__PRELOADED__) {
-  //     // Delete initial data so that subsequent data fetches can occur:
-  //     delete window.__PRELOADED__;
-  //   } else {
-  //     // Fetch mandatory data dependencies for 2nd route change onwards:
-  //     await trigger('fetch', components, triggerLocals);
-  //   }
-  //   // Fetch mandatory data dependencies for 2nd route change onwards:
-  //   await trigger('defer', components, triggerLocals);
-  //   spinnerContainer.classList.remove('spinner-border');
-  // };
+  console.log('>>>>>>>>>>>>>>>>>>>>>>>> CLIENT > store.getState() 1111 ################: ', store.getState());
 
-  const triggerHooks = async () => {
+  const triggerHooks = async (_routes, pathname, store) => {
+    console.log('>>>>>>>>>>>>>>>>>>>>>>>> CLIENT > triggerHooks 11111111111111111');
     spinnerContainer.classList.add('spinner-border');
+
     // Don't fetch data for initial route, server has already done the work:
     if (window.__PRELOADED__) {
       // Delete initial data so that subsequent data fetches can occur:
+      console.log('>>>>>>>>>>>>>>>>>>>>>>>> CLIENT > triggerHooks > window.__PRELOADED__?? 11: ', window.__PRELOADED__);
       delete window.__PRELOADED__;
+    } else {
+      // Fetch mandatory data dependencies for 2nd route change onwards:
+      console.log('>>>>>>>>>>>>>>>>>>>>>>>> CLIENT > triggerHooks > window.__PRELOADED__?? 22: ', window.__PRELOADED__);
+      await asyncGetPromises(_routes, pathname, store);
     }
+    // defer certain data fetching operations to client >>>> server-side performance <<<<
+
+    console.log('>>>>>>>>>>>>>>>>>>>>>>>> CLIENT > triggerHooks 22222222222222222');
     spinnerContainer.classList.remove('spinner-border');
   };
+
+  console.log('>>>>>>>>>>>>>>>>>>>>>>>> CLIENT > store.getState() 2222 ################: ', store.getState());
 
   const hydrate = _routes => {
     const element = (
@@ -120,7 +93,7 @@ const providers = {
         <AppContainer>
           <Provider store={store} {...providers}>
             <Router history={history}>
-              <RouterTrigger trigger={pathname => triggerHooks()}>{renderRoutes(_routes)}</RouterTrigger>
+              <RouterTrigger trigger={pathname => triggerHooks(_routes, pathname, store)}>{renderRoutes(_routes)}</RouterTrigger>
             </Router>
           </Provider>
         </AppContainer>
@@ -136,15 +109,8 @@ const providers = {
 
   hydrate(routes);
 
-  // https://webpack.js.org/concepts/hot-module-replacement/
-  // https://webpack.js.org/api/hot-module-replacement/
-  // https://webpack.js.org/guides/hot-module-replacement/
-  // https://webpack.js.org/plugins/hot-module-replacement-plugin/
-  // https://webpack.js.org/guides/development/#using-webpack-dev-middleware
-  // https://github.com/webpack-contrib/webpack-hot-middleware
-
   // if (__DEVTOOLS__ && !window.__REDUX_DEVTOOLS_EXTENSION__) {
-  //   console.log('>>>>>>>>>>>>>>>>>>> CLIENT.JS > __DEVTOOLS__ <<<<<<<<<<<<<<<<<<<<<<');
+  //   console.log('>>>>>>>>>>>>>>>>>>> CLIENT > __DEVTOOLS__ <<<<<<<<<<<<<<<<<<<<<<');
   //   const devToolsDest = document.createElement('div');
   //   window.document.body.insertBefore(devToolsDest, null);
   //   const DevTools = require('./containers/DevTools/DevTools').default;
@@ -160,7 +126,7 @@ const providers = {
   if (!__DEVELOPMENT__ && 'serviceWorker' in navigator) {
     try {
       const registration = await navigator.serviceWorker.register('/service-worker.js');
-      console.log('>>>>>>>>>>>>>>>>>>>>>>>> CLIENT.JS > serviceWorker in navigator > SW Registered! > ');
+      console.log('>>>>>>>>>>>>>>>>>>>>>>>> CLIENT > serviceWorker in navigator > SW Registered! > ');
       // registration
       registration.onupdatefound = () => {
         const installingWorker = registration.installing;
@@ -169,14 +135,14 @@ const providers = {
             case 'installed':
               if (navigator.serviceWorker.controller) {
                 // old content purged and fresh content added to cache
-                console.log('>>>>>>>>>>>>>>>>>>>>>>>> CLIENT.JS > serviceWorker > new or updated content is available <<<<<<<<<<<<<');
+                console.log('>>>>>>>>>>>>>>>>>>>>>>>> CLIENT > serviceWorker > new or updated content is available <<<<<<<<<<<<<');
               } else {
                 // precaching complete
-                console.log('>>>>>>>>>>>>>>>>>>>>>>>> CLIENT.JS > serviceWorker > content cached for offline use <<<<<<<<<<<<<');
+                console.log('>>>>>>>>>>>>>>>>>>>>>>>> CLIENT > serviceWorker > content cached for offline use <<<<<<<<<<<<<');
               }
               break;
             case 'redundant':
-              console.log('>>>>>>>>>>>>>>>>>>>>>>>> CLIENT.JS > serviceWorker > installed service worker redundant <<<<<<<<<<<<<');
+              console.log('>>>>>>>>>>>>>>>>>>>>>>>> CLIENT > serviceWorker > installed service worker redundant <<<<<<<<<<<<<');
               break;
             default:
               // ignore
@@ -184,13 +150,13 @@ const providers = {
         };
       };
     } catch (error) {
-      console.log('>>>>>>>>>>>>>>>>>>>>>>>> CLIENT.JS > serviceWorker > Error registering service worker: ', error);
+      console.log('>>>>>>>>>>>>>>>>>>>>>>>> CLIENT > serviceWorker > Error registering service worker: ', error);
     }
 
     await navigator.serviceWorker.ready;
-    console.log('>>>>>>>>>>>>>>>>>>>>>>>> CLIENT.JS > serviceWorker > SW Ready! <<<<<<<<<<<<<')
+    console.log('>>>>>>>>>>>>>>>>>>>>>>>> CLIENT > serviceWorker > SW Ready! <<<<<<<<<<<<<')
     // registration.active
   } else {
-    console.log('>>>>>>>>>>>>>>>>>>>>>>>> CLIENT.JS > !__DEVELOPMENT__ && serviceWorker in navigator NO!! <<<<<<<<<<<<<');
+    console.log('>>>>>>>>>>>>>>>>>>>>>>>> CLIENT > !__DEVELOPMENT__ && serviceWorker in navigator NO!! <<<<<<<<<<<<<');
   }
 })();

@@ -6,7 +6,6 @@ import { createMemoryHistory } from 'history';
 import { renderRoutes } from 'react-router-config';
 import { CookieStorage, NodeCookiesWrapper } from 'redux-persist-cookie-storage'; 
 
-import asyncMatchRoutes from './utils/asyncMatchRoutes';
 import asyncGetPromises from './utils/asyncGetPromises';
 import { routes } from './routes';
 import configureStore from './redux/configureStore';
@@ -44,22 +43,22 @@ export default ({ clientStats }) => async (req, res) => {
     helpers: providers
   });
 
-  // -------------------------------------------------------------------
-
-  console.log('>>>>>>>>>>>>>>>>>>>>>>>> SERVER > store.getState() 1111 #######################################: ', store.getState());
-  await asyncGetPromises(routes, req.path, store);
-
-  // -------------------------------------------------------------------
-
-  console.log('>>>>>>>>>>>>>>>>>>>>>>>> SERVER > DATA PRE-FETCH COMPLETE!! #######################################: ');
-
   function hydrate(a) {
     res.write('<!doctype html>');
     ReactDOM.renderToNodeStream(<Html assets={a} store={store} />).pipe(res);
   }
 
+  // -------------------------------------------------------------------
+
   try {
-    console.log('>>>>>>>>>>>>>>>>>>>>>>>> SERVER > store.getState() 2222 #######################################: ', store.getState());
+
+    console.log('>>>>>>>>>>>>>>>>>>>>>>>> SERVER > store.getState() 1111 ################: ', store.getState());
+    await asyncGetPromises(routes, req.path, store);
+
+    // -------------------------------------------------------------------
+
+    console.log('>>>>>>>>>>>>>>>>>>>>>>>> SERVER > DATA PRE-FETCH COMPLETE!! ################: ');
+    console.log('>>>>>>>>>>>>>>>>>>>>>>>> SERVER > store.getState() 2222 ################: ', store.getState());
 
     const helmetContext = {};
     const context = {};
@@ -77,9 +76,7 @@ export default ({ clientStats }) => async (req, res) => {
     );
 
     const content = ReactDOM.renderToString(component);
-
     const assets = flushChunks(clientStats, { chunkNames: flushChunkNames() });
-
     const status = context.status || 200;
 
     if (__DISABLE_SSR__) {
@@ -100,7 +97,6 @@ export default ({ clientStats }) => async (req, res) => {
     // console.log(`SERVER.JS: The script uses approximately ${Math.round(used * 100) / 100} MB`);
 
     const reduxStore = serialize(store.getState());
-
     const html = <Html assets={assets} content={content} store={reduxStore} />;
 
     const ssrHtml = `<!DOCTYPE html><html lang="en-US">${ReactDOM.renderToString(html)}</html>`;
