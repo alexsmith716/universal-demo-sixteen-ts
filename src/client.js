@@ -63,10 +63,9 @@ const providers = {
     persistConfig
   });
 
-  console.log('>>>>>>>>>>>>>>>>>>>>>>>> CLIENT > store.getState() 1111 ################: ', store.getState());
-
   const triggerHooks = async (_routes, pathname, store) => {
     console.log('>>>>>>>>>>>>>>>>>>>>>>>> CLIENT > triggerHooks 11111111111111111');
+    console.log('>>>>>>>>>>>>>>>>>>>>>>>> CLIENT > store.getState() 1111 ################: ', store.getState());
     spinnerContainer.classList.add('spinner-border');
 
     // Don't fetch data for initial route, server has already done the work:
@@ -83,9 +82,10 @@ const providers = {
 
     console.log('>>>>>>>>>>>>>>>>>>>>>>>> CLIENT > triggerHooks 22222222222222222');
     spinnerContainer.classList.remove('spinner-border');
+    console.log('>>>>>>>>>>>>>>>>>>>>>>>> CLIENT > store.getState() 2222 ################: ', store.getState());
   };
 
-  console.log('>>>>>>>>>>>>>>>>>>>>>>>> CLIENT > store.getState() 2222 ################: ', store.getState());
+  
 
   const hydrate = _routes => {
     const element = (
