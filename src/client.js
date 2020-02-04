@@ -85,8 +85,6 @@ const providers = {
     console.log('>>>>>>>>>>>>>>>>>>>>>>>> CLIENT > store.getState() 2222 ################: ', store.getState());
   };
 
-  
-
   const hydrate = _routes => {
     const element = (
       <HelmetProvider>

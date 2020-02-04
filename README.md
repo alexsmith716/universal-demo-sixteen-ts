@@ -9,14 +9,3 @@ https://github.com/ReactTraining/react-router/tree/master/packages/react-router-
 
 @babel/plugin-syntax-dynamic-import
 @babel/plugin-proposal-dynamic-import
-
-mongoose
-
-terser-webpack-plugin
-rimraf
-
-lint-staged
-eslint-plugin-react
-eslint-plugin-import
-
-workbox-webpack-plugin

@@ -16,10 +16,8 @@ import infoAlertThree from './modules/infoAlertThree';
 import infoAlertFour from './modules/infoAlertFour';
 import lineChart from './modules/lineChart';
 // import notifs from './modules/notifs';
-// import online from './modules/online';
 import temperatureCalculator from './modules/temperatureCalculator';
 
-// state shape
 export default function rootReducer() {
   return {
     online: (v = true) => v,
