@@ -374,12 +374,12 @@ module.exports = {
     // handler: 'CacheOnly'
     // handler: 'NetworkFirst'
     // handler: 'NetworkOnly'
+
+    // "generateSW" always creates a LOCAL Workbox runtime bundle > "importWorkboxFrom" parameter is removed
     new GenerateSW({
       swDest: path.join(buildPath, 'service-worker.js'),
       clientsClaim: true,
       skipWaiting: true,
-      // importWorkboxFrom: 'local',
-      importWorkboxFrom: 'cdn',
       navigateFallback: '/dist/index.html',
       // // Exempt all URLs that start with /_ or contain admin anywhere:
       // navigateFallbackBlacklist: [/^\/_/, /admin/],
