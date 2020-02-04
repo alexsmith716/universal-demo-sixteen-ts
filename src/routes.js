@@ -13,9 +13,7 @@ import { preloadData as preloadDataApp } from './containers/App/preloadData';
 import { preloadData as preloadDataAboutThree } from './containers/AboutThree/preloadData';
 import { preloadData as preloadDataAboutFour } from './containers/AboutFour/preloadData';
 
-console.log('DDDDDDDDDD > preloadDataApp: ', preloadDataApp);
-console.log('DDDDDDDDDD > preloadDataAboutThree: ', preloadDataAboutThree)
-console.log('DDDDDDDDDD > preloadDataAboutFour: ', preloadDataAboutFour)
+// console.log('DDDDDDDDDD > preloadDataApp: ', preloadDataApp);
 
 import './theme/scss/global/styles.global.scss';
 

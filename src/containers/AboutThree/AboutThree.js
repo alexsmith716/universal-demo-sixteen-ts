@@ -57,7 +57,7 @@ class AboutThree extends Component {
 
               <div>
                 <div className="card-title">
-                  <h5>InfoBar message: '<span>{data ? data.message : 'no message!'}</span>'</h5>
+                  <h5>InfoBar AboutThree message: '<span>{data ? data.message : 'no message!'}</span>'</h5>
 
                   <h6>{data && new Date(data.time).toString()}</h6>
 

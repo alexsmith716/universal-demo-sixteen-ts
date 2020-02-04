@@ -95,7 +95,7 @@ class About extends Component {
           </div>
         </div>
 
-        <h2 className="color-salmon font-tester-font2">Demo Component's State By Toggling Our Customers!</h2>
+        <h2 className="color-salmon font-tester-font2">Demo Component State By Toggling Our Customers!</h2>
 
         <div className="row">
           <div className="col-12 my-4 mb-4">
