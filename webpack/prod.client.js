@@ -9,7 +9,7 @@ process.env.IS_CLIENT = true;
 const ExtractCssChunks = require('extract-css-chunks-webpack-plugin');
 
 const CopyPlugin = require('copy-webpack-plugin');
-const { GenerateSW } = require('workbox-webpack-plugin');
+// const { GenerateSW } = require('workbox-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 
@@ -376,98 +376,98 @@ module.exports = {
     // handler: 'NetworkOnly'
 
     // "generateSW" always creates a LOCAL Workbox runtime bundle > "importWorkboxFrom" parameter is removed
-    new GenerateSW({
-      swDest: path.join(buildPath, 'service-worker.js'),
-      clientsClaim: true,
-      skipWaiting: true,
-      navigateFallback: '/dist/index.html',
-      // // Exempt all URLs that start with /_ or contain admin anywhere:
-      // navigateFallbackBlacklist: [/^\/_/, /admin/],
-      // // Include URLs that start with /pages:
-      // navigateFallbackWhitelist: [/^\/pages/],
-      // // Do not precache:
-      exclude: [/\.map$/,],
-      // exclude: [/\.(?:png|jpg|jpeg|svg)$/],
-      runtimeCaching: [
-        {
-          urlPattern: /favicon\.ico/,
-          handler: 'CacheFirst',
-        },
-        {
-          urlPattern: /manifest\.json/,
-          handler: 'CacheFirst',
-        },
-        {
-          urlPattern: /\.(?:png|jpg|jpeg|svg)$/,
-          handler: 'CacheFirst',
-        },
-        {
-          urlPattern: /json-data/,
-          handler: 'NetworkFirst',
-          options: {
-            cacheableResponse: {
-              statuses: [0, 200]
-            }
-          }
-        },
-        // {
-        //   // To match cross-origin requests, use a RegExp that matches
-        //   // the start of the origin:
-        //   urlPattern: new RegExp('^https://api\.github\.com/'),
-        //   handler: 'NetworkFirst',
-        //   // handler: 'StaleWhileRevalidate',
-        //   // options: {
-        //   //   cacheableResponse: {
-        //   //     statuses: [0, 200]
-        //   //   }
-        //   // }
-        // },
-        // {
-        //   // Match any same-origin request that contains 'api'.
-        //   urlPattern: /api/,
-        //   // Apply a network-first strategy.
-        //   handler: 'NetworkFirst',
-        //   options: {
-        //     // Fall back to the cache after 10 seconds.
-        //     networkTimeoutSeconds: 10,
-        //     // Use a custom cache name for this route.
-        //     cacheName: 'my-api-cache',
-        //     // Configure custom cache expiration.
-        //     expiration: {
-        //       maxEntries: 5,
-        //       maxAgeSeconds: 60,
-        //     },
-        //     // Configure background sync.
-        //     backgroundSync: {
-        //       name: 'my-queue-name',
-        //       options: {
-        //         maxRetentionTime: 60 * 60,
-        //       },
-        //     },
-        //     // Configure which responses are considered cacheable.
-        //     cacheableResponse: {
-        //       statuses: [0, 200],
-        //       headers: {'x-test': 'true'},
-        //     },
-        //     // Configure the broadcast cache update plugin.
-        //     broadcastUpdate: {
-        //       channelName: 'my-update-channel',
-        //     },
-        //     // Add in any additional plugin logic you need.
-        //     plugins: [
-        //       {cacheDidUpdate: () => /* custom plugin code */}
-        //     ],
-        //     // matchOptions and fetchOptions are used to configure the handler.
-        //     fetchOptions: {
-        //       mode: 'no-cors',
-        //     },
-        //     matchOptions: {
-        //       ignoreSearch: true,
-        //     },
-        //   },
-        // },
-      ],
-    }),
+    // new GenerateSW({
+    //   swDest: path.join(buildPath, 'service-worker.js'),
+    //   clientsClaim: true,
+    //   skipWaiting: true,
+    //   navigateFallback: '/dist/index.html',
+    //   // // Exempt all URLs that start with /_ or contain admin anywhere:
+    //   // navigateFallbackBlacklist: [/^\/_/, /admin/],
+    //   // // Include URLs that start with /pages:
+    //   // navigateFallbackWhitelist: [/^\/pages/],
+    //   // // Do not precache:
+    //   exclude: [/\.map$/,],
+    //   // exclude: [/\.(?:png|jpg|jpeg|svg)$/],
+    //   runtimeCaching: [
+    //     {
+    //       urlPattern: /favicon\.ico/,
+    //       handler: 'CacheFirst',
+    //     },
+    //     {
+    //       urlPattern: /manifest\.json/,
+    //       handler: 'CacheFirst',
+    //     },
+    //     {
+    //       urlPattern: /\.(?:png|jpg|jpeg|svg)$/,
+    //       handler: 'CacheFirst',
+    //     },
+    //     {
+    //       urlPattern: /json-data/,
+    //       handler: 'NetworkFirst',
+    //       options: {
+    //         cacheableResponse: {
+    //           statuses: [0, 200]
+    //         }
+    //       }
+    //     },
+    //     // {
+    //     //   // To match cross-origin requests, use a RegExp that matches
+    //     //   // the start of the origin:
+    //     //   urlPattern: new RegExp('^https://api\.github\.com/'),
+    //     //   handler: 'NetworkFirst',
+    //     //   // handler: 'StaleWhileRevalidate',
+    //     //   // options: {
+    //     //   //   cacheableResponse: {
+    //     //   //     statuses: [0, 200]
+    //     //   //   }
+    //     //   // }
+    //     // },
+    //     // {
+    //     //   // Match any same-origin request that contains 'api'.
+    //     //   urlPattern: /api/,
+    //     //   // Apply a network-first strategy.
+    //     //   handler: 'NetworkFirst',
+    //     //   options: {
+    //     //     // Fall back to the cache after 10 seconds.
+    //     //     networkTimeoutSeconds: 10,
+    //     //     // Use a custom cache name for this route.
+    //     //     cacheName: 'my-api-cache',
+    //     //     // Configure custom cache expiration.
+    //     //     expiration: {
+    //     //       maxEntries: 5,
+    //     //       maxAgeSeconds: 60,
+    //     //     },
+    //     //     // Configure background sync.
+    //     //     backgroundSync: {
+    //     //       name: 'my-queue-name',
+    //     //       options: {
+    //     //         maxRetentionTime: 60 * 60,
+    //     //       },
+    //     //     },
+    //     //     // Configure which responses are considered cacheable.
+    //     //     cacheableResponse: {
+    //     //       statuses: [0, 200],
+    //     //       headers: {'x-test': 'true'},
+    //     //     },
+    //     //     // Configure the broadcast cache update plugin.
+    //     //     broadcastUpdate: {
+    //     //       channelName: 'my-update-channel',
+    //     //     },
+    //     //     // Add in any additional plugin logic you need.
+    //     //     plugins: [
+    //     //       {cacheDidUpdate: () => /* custom plugin code */}
+    //     //     ],
+    //     //     // matchOptions and fetchOptions are used to configure the handler.
+    //     //     fetchOptions: {
+    //     //       mode: 'no-cors',
+    //     //     },
+    //     //     matchOptions: {
+    //     //       ignoreSearch: true,
+    //     //     },
+    //     //   },
+    //     // },
+    //   ],
+    // }),
 
     // new BundleAnalyzerPlugin({
     //   analyzerMode: 'static',

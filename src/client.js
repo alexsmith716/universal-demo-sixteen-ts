@@ -64,8 +64,7 @@ const providers = {
   });
 
   const triggerHooks = async (_routes, pathname, store) => {
-    console.log('>>>>>>>>>>>>>>>>>>>>>>>> CLIENT > triggerHooks 11111111111111111');
-    console.log('>>>>>>>>>>>>>>>>>>>>>>>> CLIENT > store.getState() 1111 ################: ', store.getState());
+    console.log('>>>>>>>>>>>>>>>>>>>>>>>> CLIENT > triggerHooks > store.getState() 1111 ######: ', store.getState());
     spinnerContainer.classList.add('spinner-border');
 
     // Don't fetch data for initial route, server has already done the work:
@@ -79,10 +78,8 @@ const providers = {
       await asyncGetPromises(_routes, pathname, store);
     }
     // defer certain data fetching operations to client >>>> server-side performance <<<<
-
-    console.log('>>>>>>>>>>>>>>>>>>>>>>>> CLIENT > triggerHooks 22222222222222222');
     spinnerContainer.classList.remove('spinner-border');
-    console.log('>>>>>>>>>>>>>>>>>>>>>>>> CLIENT > store.getState() 2222 ################: ', store.getState());
+    console.log('>>>>>>>>>>>>>>>>>>>>>>>> CLIENT > triggerHooks > store.getState() 2222 ######: ', store.getState());
   };
 
   const hydrate = _routes => {
@@ -91,7 +88,9 @@ const providers = {
         <AppContainer>
           <Provider store={store} {...providers}>
             <Router history={history}>
-              <RouterTrigger trigger={pathname => triggerHooks(_routes, pathname, store)}>{renderRoutes(_routes)}</RouterTrigger>
+              <RouterTrigger trigger={pathname => triggerHooks(_routes, pathname, store)}>
+                {renderRoutes(_routes)}
+              </RouterTrigger>
             </Router>
           </Provider>
         </AppContainer>
