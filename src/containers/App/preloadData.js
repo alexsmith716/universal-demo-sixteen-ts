@@ -3,6 +3,8 @@ import { isLoaded as isInfoAlertLoaded, load as loadInfoAlert } from '../../redu
 // import { isLoaded as isInfoAlertFourLoaded, load as loadInfoAlertFour } from '../../redux/modules/infoAlertFour';
 
 async function preloadData(store, getState) {
+  console.log('>>>>>>>>>>>>>>>> APP > preloadData > store.getState()!!!: ', store.getState());
+
   console.log('>>>>>>>>>>>>>>>> APP > preloadData > isInfoLoaded?: ', isInfoLoaded(store.getState()))
   if (!isInfoLoaded(store.getState())) {
     await store.dispatch(loadInfo());
