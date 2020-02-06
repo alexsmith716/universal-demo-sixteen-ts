@@ -43,7 +43,7 @@ function Html({ assets, content, store }) {
         {/* (>>>>>>> STORE <<<<<<<<<<<<<<<<<<<<<<<<<<<<<) */}
         {store && (
           <script
-            dangerouslySetInnerHTML={{ __html: `window.__PRELOADED__=true;window.REDUX_DATA=${store};`}}
+            dangerouslySetInnerHTML={{ __html: `window.__PRELOADED__=true; window.REDUX_DATA=${store};`}}
             charSet="UTF-8"
           />
         )}

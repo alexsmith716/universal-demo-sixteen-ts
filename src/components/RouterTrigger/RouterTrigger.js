@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withRouter, Route } from 'react-router';
 
+// https://github.com/ReactTraining/react-router/tree/master/packages/react-router-dom/docs/api
 // https://github.com/ReactTraining/react-router/tree/master/packages/react-router/docs/api
 // https://github.com/ReactTraining/react-router/blob/master/packages/react-router/docs/api/withRouter.md
 // https://github.com/ReactTraining/react-router/blob/master/packages/react-router/docs/api/history.md
@@ -115,7 +116,7 @@ export class RouterTrigger extends Component {
     this.trigger();
   }
 
-  // let React know if a component’s output is not affected by the current change in 'state' or 'props'
+  // let React know if a component's output is not affected by the current change in 'state' or 'props'
   // >>> default behavior is to re-render on every 'state' change <<<, and for vast majority of cases rely on default behavior
   // invoked before 'rendering' when new 'props' or 'state' are being received. 
   // Defaults to 'true'. method is not called for the initial 'render' or when 'forceUpdate()' is used.
