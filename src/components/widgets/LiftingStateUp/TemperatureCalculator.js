@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 import { bindActionCreators } from 'multireducer';
 import { connect } from 'react-redux';
 import * as temperatureCalculatorActions from '../../../redux/modules/temperatureCalculator';
@@ -8,7 +8,6 @@ import BoilingVerdict from './BoilingVerdict';
 import TemperatureInput from './TemperatureInput';
 import { toCelsius, toFahrenheit, tryConvert } from './stateHelpers';
 
-// UI bindings
 @connect(
   (state, { multireducerKey: key }) => ({ 
     temperature: state.temperatureCalculatorCollection[key].temperature,
@@ -19,20 +18,18 @@ import { toCelsius, toFahrenheit, tryConvert } from './stateHelpers';
 
 class TemperatureCalculator extends Component {
 
-  // static propTypes = {
-  //   temperature: PropTypes.string.isRequired,
-  //   scale: PropTypes.string.isRequired,
-  //   celsiusChange: PropTypes.func.isRequired,
-  //   fahrenheitChange: PropTypes.func.isRequired,
-  // };
+  static propTypes = {
+    temperature: PropTypes.string.isRequired,
+    scale: PropTypes.string.isRequired,
+    celsiusChange: PropTypes.func.isRequired,
+    fahrenheitChange: PropTypes.func.isRequired,
+  };
 
   render() {
 
-    const { scale, temperature, celsiusChange, fahrenheitChange } = this.props;
-
+    const { temperature, scale, celsiusChange, fahrenheitChange } = this.props;
     const celsius = scale === 'f' ? tryConvert(temperature, toCelsius) : temperature;
     const fahrenheit = scale === 'c' ? tryConvert(temperature, toFahrenheit) : temperature;
-
     const styles = require('./scss/TemperatureCalculator.scss');
 
     return (
@@ -45,12 +42,12 @@ class TemperatureCalculator extends Component {
               <TemperatureInput
                 scale="c"
                 temperature={ celsius }
-                onTemperatureChange={ celsiusChange } />
+                onTemperatureChangeProp={ celsiusChange } />
 
               <TemperatureInput
                 scale="f"
                 temperature={ fahrenheit }
-                onTemperatureChange={ fahrenheitChange } />
+                onTemperatureChangeProp={ fahrenheitChange } />
 
             </form>
 
