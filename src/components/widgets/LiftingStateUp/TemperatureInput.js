@@ -1,51 +1,25 @@
 import React, { Component } from 'react';
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 
-const scaleNames = {
-  c: 'Celsius',
-  f: 'Fahrenheit'
-};
+const scaleNames = {c: 'Celsius', f: 'Fahrenheit'};
 
 class TemperatureInput extends Component {
 
-  constructor(props) {
-    super(props);
-
-    this.handleChange = this.handleChange.bind(this);
-  }
-
-  // -----------------------------------------------------------
-
-  // static propTypes = {
-  //   scale: PropTypes.string,
-  //   temperature: PropTypes.string,
-  //   onTemperatureChange: PropTypes.func
-  // };
-
-  // componentDidMount() {
-  //   console.log('>>>>>>>>>>>>>>>> TemperatureInput > componentDidMount <<<<<<<<<<<<<<<<<<<<<<');
+  // constructor(props) {
+  //   super(props);
+  //   this.handleChange = this.handleChange.bind(this);
   // }
 
-  // componentWillUnmount() {
-  //   console.log('>>>>>>>>>>>>>>>> TemperatureInput > componentWillUnmount <<<<<<<<<<<<<<<<<<<<<<');
-  // }
+  static propTypes = {
+    scale: PropTypes.string,
+    temperature: PropTypes.string,
+    onTemperatureChangeProp: PropTypes.func
+  };
 
-  // shouldComponentUpdate(nextProps, nextState) {
-  //   console.log('>>>>>>>>>>>>>>>> TemperatureInput > shouldComponentUpdate <<<<<<<<<<<<<<<<<<<<<<');
-  // };
-
-  // static getDerivedStateFromProps(props, state) {
-  //   console.log('>>>>>>>>>>>>>>>> TemperatureInput > getDerivedStateFromProps <<<<<<<<<<<<<<<<<<<<<<');
-  // };
-
-  // -----------------------------------------------------------
-
-  // 'handleChange' calling prop method 'onTemperatureChange'
+  // 'handleChange' calling prop method 'onTemperatureChangeProp'
   handleChange = (e) => {
-    this.props.onTemperatureChange(e.target.value);
+    this.props.onTemperatureChangeProp(e.target.value);
   }
-
-  // -----------------------------------------------------------
 
   render() {
 
@@ -53,7 +27,6 @@ class TemperatureInput extends Component {
     const scale = this.props.scale;
 
     return (
-
       <div className="form-group">
 
         <label htmlFor="temperatureInput">Enter temperature in { scaleNames[scale] }:</label>
@@ -64,15 +37,10 @@ class TemperatureInput extends Component {
           id="temperatureInput"
 
           placeholder={ `${scaleNames[scale]} value...` }
-
           value={ temperature }
-
           onChange={ this.handleChange }
-
         />
-
       </div>
-
     );
   }
 };

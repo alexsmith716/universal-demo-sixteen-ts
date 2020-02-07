@@ -2,6 +2,12 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withRouter, Route } from 'react-router';
 
+// https://reactjs.org/docs/lifting-state-up.html
+// often, several components need to reflect the same changing data
+// sharing state is accomplished by moving it up to the closest common ancestor of the components that need it
+// "client" owns the state, it becomes the "source of truth" for "asyncGetPromises" -prefetched data state
+// there should be a single "source of truth" for any data that changes in a React application
+
 @withRouter
 
 export class RouterTrigger extends Component {
@@ -123,6 +129,11 @@ export class RouterTrigger extends Component {
   safeSetState(nextState, callback) {
     console.log('>>>>>>>>>>>>>>>>>>>>>>>> RouterTrigger > safeSetState() > this.mounted: ', this.mounted);
     if (this.mounted) {
+      // State Updates May Be Asynchronous:
+      // React may batch multiple 'setState()' calls into a single update for performance
+      // 'this.props' and 'this.state' may be updated asynchronously
+      // for async, use 'setState()' that accepts a function
+      // function will receive previous state -first argument, and props at time update is applied -second argument
       this.setState(nextState, callback);
     }
   }
@@ -131,8 +142,8 @@ export class RouterTrigger extends Component {
     const { children, location } = this.props;
     const { previousLocation } = this.state;
 
-    console.log('>>>>>>>>>>>>>>>>>>>>>>>> RouterTrigger > render() > children: ', );
-    console.log('>>>>>>>>>>>>>>>>>>>>>>>> RouterTrigger > render() > location: ', );
+    console.log('>>>>>>>>>>>>>>>>>>>>>>>> RouterTrigger > render() > children: ', children);
+    console.log('>>>>>>>>>>>>>>>>>>>>>>>> RouterTrigger > render() > location: ', location);
     console.log('>>>>>>>>>>>>>>>>>>>>>>>> RouterTrigger > render() > previousLocation: ', previousLocation);
 
     return <Route location={previousLocation || location} render={() => children} />;
