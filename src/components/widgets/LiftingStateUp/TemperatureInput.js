@@ -5,11 +5,6 @@ const scaleNames = {c: 'Celsius', f: 'Fahrenheit'};
 
 class TemperatureInput extends Component {
 
-  // constructor(props) {
-  //   super(props);
-  //   this.handleChange = this.handleChange.bind(this);
-  // }
-
   static propTypes = {
     scale: PropTypes.string,
     temperature: PropTypes.string,

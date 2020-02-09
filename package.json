@@ -61,7 +61,6 @@
     "react-router-config": "^5.1.1",
     "react-router-dom": "^5.1.2",
     "react-universal-component": "^4.0.1",
-    "recompose": "^0.30.0",
     "redux": "^4.0.5",
     "redux-api-middleware": "^3.2.0",
     "redux-auth-wrapper": "^3.0.0",

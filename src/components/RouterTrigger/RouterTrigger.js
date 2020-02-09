@@ -9,6 +9,7 @@ import { withRouter, Route } from 'react-router';
 // there should be a single "source of truth" for any data that changes in a React application
 
 @withRouter
+// passes match, location, and history props to component whenever it renders
 
 export class RouterTrigger extends Component {
 
@@ -32,24 +33,18 @@ export class RouterTrigger extends Component {
   // it should return an object to update the state, or null to update nothing
   static getDerivedStateFromProps(props, state) {
     const { location } = state;
-    const { location: { pathname, search } } = props;
+    const { location: { pathname, search } } = props; // @withRouter
     const navigated = !location || `${pathname}${search}` !== `${location.pathname}${location.search}`;
 
-    console.log('>>>>>>>>>>>>>>>>>>>>>>>> RouterTrigger > getDerivedStateFromProps() > state.location: ', state.location);
-
-    console.log('>>>>>>>>>>>>>>>>>>>>>>>> RouterTrigger > getDerivedStateFromProps() > {pathname}: ', pathname);
-    console.log('>>>>>>>>>>>>>>>>>>>>>>>> RouterTrigger > getDerivedStateFromProps() > {search}: ', search);
+    //console.log('>>>>>>>>>>>>>>>>>>>>>>>> RouterTrigger > getDerivedStateFromProps() > {pathname}: ', pathname);
+    //console.log('>>>>>>>>>>>>>>>>>>>>>>>> RouterTrigger > getDerivedStateFromProps() > {search}: ', search);
 
     const v = location || props.location;
-    console.log('>>>>>>>>>>>>>>>>>>>>>>>> RouterTrigger > getDerivedStateFromProps() > navigated: ', navigated);
-    console.log('>>>>>>>>>>>>>>>>>>>>>>>> RouterTrigger > getDerivedStateFromProps() > location || props.location: ', v);
-    // --------------------
-    console.log('>>>>>>>>>>>>>>>>>>>>>>>> RouterTrigger > getDerivedStateFromProps() > props.location: ', props.location);
-    console.log('>>>>>>>>>>>>>>>>>>>>>>>> RouterTrigger > getDerivedStateFromProps() > location: ', location);
+    console.log('>>>>>>>>>>>>>>>>>>>>>>>> ZZZZ RouterTrigger > getDerivedStateFromProps() > state.location: ', state.location);
+    console.log('>>>>>>>>>>>>>>>>>>>>>>>> XXXX RouterTrigger > getDerivedStateFromProps() > navigated: ', navigated);
+    console.log('>>>>>>>>>>>>>>>>>>>>>>>> XXXX RouterTrigger > getDerivedStateFromProps() > @withRouter > props.location: ', props.location);
+    console.log('>>>>>>>>>>>>>>>>>>>>>>>> XXXX RouterTrigger > getDerivedStateFromProps() > previousLocation: ', v);
 
-    // set:    {needTrigger: , location: , previousLocation: }
-    // for:    componentDidMount() && componentDidUpdate() { this.trigger() }
-    // after:  render()
     if (navigated) {
       return {
         needTrigger: true,
@@ -72,6 +67,8 @@ export class RouterTrigger extends Component {
     this.triggerSafeSetState();
   }
 
+  // =====================================
+
   // let React know if a component's output is not affected by the current change in 'state' or 'props'
   // >>> default behavior is to re-render on every 'state' change <<<, and for vast majority of cases rely on default behavior
   // invoked before 'rendering' when new 'props' or 'state' are being received. 
@@ -81,10 +78,10 @@ export class RouterTrigger extends Component {
   // SHOULD COMPONENT "re-render" ?????
   shouldComponentUpdate(nextProps, nextState) {
     const { previousLocation } = this.state;
-    console.log('>>>>>>>>>>>>>>>>>>>>>>>> RouterTrigger > shouldComponentUpdate() previousLocation: ', previousLocation);
-    console.log('>>>>>>>>>>>>>>>>>>>>>>>> RouterTrigger > shouldComponentUpdate() nextState.previousLocation: ', nextState.previousLocation);
+    //console.log('>>>>>>>>>>>>>>>>>>>>>>>> RouterTrigger > shouldComponentUpdate() previousLocation: ', previousLocation);
+    //console.log('>>>>>>>>>>>>>>>>>>>>>>>> RouterTrigger > shouldComponentUpdate() nextState.previousLocation: ', nextState.previousLocation);
     const n = nextState.previousLocation !== previousLocation;
-    console.log('>>>>>>>>>>>>>>>>>>>>>>>> RouterTrigger > shouldComponentUpdate() return n: ', n);
+    console.log('>>>>>>>>>>>>>>>>>>>>>>>> WWWW RouterTrigger > shouldComponentUpdate() return n: ', n);
     return n;
   }
 
@@ -107,24 +104,28 @@ export class RouterTrigger extends Component {
 
   // ===============================================================================
   triggerSafeSetState = () => {
+    console.log('>>>>>>>>>>>>>>>>>>>>>>>> RouterTrigger > triggerSafeSetState() <<<<<<<<<<<<<<<<<<<<<<<');
     const { triggerProp, location } = this.props;
-    const { needTrigger } = this.state;
+    const { needTrigger, previousLocation } = this.state;
 
-    console.log('>>>>>>>>>>>>>>>>>>>>>>>> RouterTrigger > triggerSafeSetState > triggerProp: ', triggerProp);
-    console.log('>>>>>>>>>>>>>>>>>>>>>>>> RouterTrigger > triggerSafeSetState > needTrigger: ', needTrigger);
+    console.log('>>>>>>>>>>>>>>>>>>>>>>>> RouterTrigger > triggerSafeSetState() > needTrigger: ', needTrigger);
+    console.log('>>>>>>>>>>>>>>>>>>>>>>>> RouterTrigger > triggerSafeSetState() > location: ', location);
+    console.log('>>>>>>>>>>>>>>>>>>>>>>>> RouterTrigger > triggerSafeSetState() > previousLocation: ', previousLocation);
 
     if (needTrigger) {
       this.safeSetState({ needTrigger: false }, () => {
         triggerProp(location.pathname)
           .catch(err => console.log('Failure in RouterTrigger!'))
           .then(() => {
+            console.log('>>>>>>>>>>>>>>>>>>>>>>>> RouterTrigger > triggerSafeSetState() > triggerProp() <<<<<<<<<<<<<<<<<<<<<<<');
             // clear previousLocation so the next screen renders
-            console.log('>>>>>>>>>>>>>>>>>>>>>>>> RouterTrigger > triggerProp(location.pathname) <<<<<<<<<<<<<<<<<<<<');
+            //console.log('>>>>>>>>>>>>>>>>>>>>>>>> RouterTrigger > triggerSafeSetState > triggerProp(location.pathname) <<<<<<<<<<<<<<<<<<<<');
             this.safeSetState({ previousLocation: null });
           });
       });
     }
   };
+  // =============================================================================== 
 
   safeSetState(nextState, callback) {
     console.log('>>>>>>>>>>>>>>>>>>>>>>>> RouterTrigger > safeSetState() > this.mounted: ', this.mounted);
@@ -134,6 +135,8 @@ export class RouterTrigger extends Component {
       // 'this.props' and 'this.state' may be updated asynchronously
       // for async, use 'setState()' that accepts a function
       // function will receive previous state -first argument, and props at time update is applied -second argument
+      console.log('>>>>>>>>>>>>>>>>>>>>>>>> RouterTrigger > safeSetState() > nextState: ', nextState);
+      console.log('>>>>>>>>>>>>>>>>>>>>>>>> RouterTrigger > safeSetState() > callbacks: ', callback);
       this.setState(nextState, callback);
     }
   }
@@ -142,7 +145,8 @@ export class RouterTrigger extends Component {
     const { children, location } = this.props;
     const { previousLocation } = this.state;
 
-    console.log('>>>>>>>>>>>>>>>>>>>>>>>> RouterTrigger > render() > children: ', children);
+    console.log('>>>>>>>>>>>>>>>>>>>>>>>> RouterTrigger > render() <<<<<<<<<<<<<<<<<<<<<<<');
+    //console.log('>>>>>>>>>>>>>>>>>>>>>>>> RouterTrigger > render() > children: ', children);
     console.log('>>>>>>>>>>>>>>>>>>>>>>>> RouterTrigger > render() > location: ', location);
     console.log('>>>>>>>>>>>>>>>>>>>>>>>> RouterTrigger > render() > previousLocation: ', previousLocation);
 
