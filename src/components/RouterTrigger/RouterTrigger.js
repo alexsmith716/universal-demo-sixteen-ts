@@ -9,7 +9,12 @@ import { withRouter, Route } from 'react-router';
 // there should be a single "source of truth" for any data that changes in a React application
 
 @withRouter
+// get access to the history object's properties and the closest <Route>'s match
 // passes match, location, and history props to component whenever it renders
+
+// location - (object) The current location. May have the following properties:
+//  * pathname - (string) The path of the URL
+//  * search - (string) The URL query string
 
 export class RouterTrigger extends Component {
 
@@ -25,22 +30,20 @@ export class RouterTrigger extends Component {
 
   state = {
     needTrigger: false,
-    location: null,
+    locationState: null,
     previousLocation: null
   };
 
   // invoked right before calling the 'render' method, both on initial 'mount' and subsequent 'updates'
   // it should return an object to update the state, or null to update nothing
   static getDerivedStateFromProps(props, state) {
-    const { location } = state;
+    // store 'withRouter' props 'location' in state 'locationState' to compare when props change
+    const { locationState } = state;
     const { location: { pathname, search } } = props; // @withRouter
-    const navigated = !location || `${pathname}${search}` !== `${location.pathname}${location.search}`;
+    const navigated = !locationState || `${pathname}${search}` !== `${locationState.pathname}${locationState.search}`;
 
-    //console.log('>>>>>>>>>>>>>>>>>>>>>>>> RouterTrigger > getDerivedStateFromProps() > {pathname}: ', pathname);
-    //console.log('>>>>>>>>>>>>>>>>>>>>>>>> RouterTrigger > getDerivedStateFromProps() > {search}: ', search);
-
-    const v = location || props.location;
-    console.log('>>>>>>>>>>>>>>>>>>>>>>>> ZZZZ RouterTrigger > getDerivedStateFromProps() > state.location: ', state.location);
+    const v = locationState || props.location;
+    console.log('>>>>>>>>>>>>>>>>>>>>>>>> ZZZZ RouterTrigger > getDerivedStateFromProps() > state.locationState: ', state.locationState);
     console.log('>>>>>>>>>>>>>>>>>>>>>>>> XXXX RouterTrigger > getDerivedStateFromProps() > navigated: ', navigated);
     console.log('>>>>>>>>>>>>>>>>>>>>>>>> XXXX RouterTrigger > getDerivedStateFromProps() > @withRouter > props.location: ', props.location);
     console.log('>>>>>>>>>>>>>>>>>>>>>>>> XXXX RouterTrigger > getDerivedStateFromProps() > previousLocation: ', v);
@@ -48,8 +51,8 @@ export class RouterTrigger extends Component {
     if (navigated) {
       return {
         needTrigger: true,
-        location: props.location,
-        previousLocation: location || props.location
+        locationState: props.location,
+        previousLocation: locationState || props.location
       };
     }
     return null;
@@ -119,7 +122,6 @@ export class RouterTrigger extends Component {
           .then(() => {
             console.log('>>>>>>>>>>>>>>>>>>>>>>>> RouterTrigger > triggerSafeSetState() > triggerProp() <<<<<<<<<<<<<<<<<<<<<<<');
             // clear previousLocation so the next screen renders
-            //console.log('>>>>>>>>>>>>>>>>>>>>>>>> RouterTrigger > triggerSafeSetState > triggerProp(location.pathname) <<<<<<<<<<<<<<<<<<<<');
             this.safeSetState({ previousLocation: null });
           });
       });
@@ -149,7 +151,7 @@ export class RouterTrigger extends Component {
     //console.log('>>>>>>>>>>>>>>>>>>>>>>>> RouterTrigger > render() > children: ', children);
     console.log('>>>>>>>>>>>>>>>>>>>>>>>> RouterTrigger > render() > location: ', location);
     console.log('>>>>>>>>>>>>>>>>>>>>>>>> RouterTrigger > render() > previousLocation: ', previousLocation);
-
+    // use a controlled <Route> to trick all descendants into rendering the old location
     return <Route location={previousLocation || location} render={() => children} />;
   }
 }
