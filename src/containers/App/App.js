@@ -1,4 +1,4 @@
-import _ from 'lodash';
+// import _ from 'lodash';
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
@@ -33,32 +33,32 @@ export class App extends Component {
     isBot: PropTypes.string.isRequired,
   };
 
-  static defaultProps = {
-    user: null
-  };
+  // static defaultProps = {
+  //   user: null
+  // };
 
-  state = {
-    user: this.props.user,
-    prevProps: this.props
-  };
+  // state = {
+  //   user: this.props.user,
+  //   prevProps: this.props
+  // };
 
-  static getDerivedStateFromProps(props, state) {
-    const { prevProps } = state;
-    // chance to compare incoming props to previous props
-    const user = !_.isEqual(prevProps.user, props.user) ? props.user : state.user;
+  // static getDerivedStateFromProps(props, state) {
+  //   const { prevProps } = state;
+  //   // chance to compare incoming props to previous props
+  //   // const user = !_.isEqual(prevProps.user, props.user) ? props.user : state.user;
 
-    if (!prevProps.user && props.user) {
-      const query = qs.parse(props.location.search, { ignoreQueryPrefix: true });
-      props.pushState(query.redirect || '/login-success');
-    } else if (prevProps.user && !props.user) {
-      props.pushState('/');
-    }
+  //   if (!prevProps.user && props.user) {
+  //     const query = qs.parse(props.location.search, { ignoreQueryPrefix: true });
+  //     props.pushState(query.redirect || '/login-success');
+  //   } else if (prevProps.user && !props.user) {
+  //     props.pushState('/');
+  //   }
 
-    return {
-      user,
-      prevProps: props
-    };
-  }
+  //   return {
+  //     user,
+  //     prevProps: props
+  //   };
+  // }
 
   render() {
 
