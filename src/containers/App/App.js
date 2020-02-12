@@ -1,4 +1,3 @@
-// import _ from 'lodash';
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
@@ -15,15 +14,17 @@ import { FontsModal } from '../../components';
 
 import config from '../../../config/config';
 
-@connect(state => ({
-  online: state.online,
-  userAgent: state.device.userAgent,
-  isBot: state.device.isBot
-}))
+// https://github.com/reduxjs/react-redux/blob/master/docs/api/hooks.md
 
-@withRouter
+const mapStateToProps = (state) => {
+  return {
+    online: state.online,
+    userAgent: state.device.userAgent,
+    isBot: state.device.isBot
+  };
+};
 
-export class App extends Component {
+class App extends Component {
 
   static propTypes = {
     route: PropTypes.objectOf(PropTypes.any).isRequired,
@@ -33,36 +34,31 @@ export class App extends Component {
     isBot: PropTypes.string.isRequired,
   };
 
-  // static defaultProps = {
-  //   user: null
-  // };
+  state = {
+    prevProps: this.props
+  };
 
-  // state = {
-  //   user: this.props.user,
-  //   prevProps: this.props
-  // };
+  // invoked right before calling the 'render' method, both on initial 'mount' and subsequent 'updates'
+  // it should return an object to update the state, or null to update nothing
+  static getDerivedStateFromProps(props, state) {
+    const { prevProps } = state;
 
-  // static getDerivedStateFromProps(props, state) {
-  //   const { prevProps } = state;
-  //   // chance to compare incoming props to previous props
-  //   // const user = !_.isEqual(prevProps.user, props.user) ? props.user : state.user;
+    return {
+      prevProps: props
+    };
+  }
 
-  //   if (!prevProps.user && props.user) {
-  //     const query = qs.parse(props.location.search, { ignoreQueryPrefix: true });
-  //     props.pushState(query.redirect || '/login-success');
-  //   } else if (prevProps.user && !props.user) {
-  //     props.pushState('/');
-  //   }
+  componentDidUpdate(prevProps) {
+    const { location } = this.props;
 
-  //   return {
-  //     user,
-  //     prevProps: props
-  //   };
-  // }
+    if (location.pathname !== prevProps.location.pathname) {
+      window.scrollTo(0, 0);
+    }
+  }
 
   render() {
 
-    const { notifs, route, online, userAgent, isBot } = this.props;
+    const { notifs, online, userAgent, isBot, route,  } = this.props;
     const styles = require('./styles/App.scss');
 
     return (
@@ -178,12 +174,4 @@ export class App extends Component {
   }
 }
 
-// const mapStateToProps = (state) => {
-//   return {
-//     online: state.online,
-//     userAgent: state.device.userAgent,
-//     isBot: state.device.isBot
-//   };
-// };
-// 
-// export connect(mapStateToProps)(App);
+export default withRouter(connect(mapStateToProps)(App));
