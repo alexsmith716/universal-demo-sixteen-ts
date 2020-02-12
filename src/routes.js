@@ -1,4 +1,5 @@
-import { App, Home, NotFound,} from './containers';
+import { Home, NotFound,} from './containers';
+import App from './containers/App/App';
 
 import About from './containers/About/Loadable';
 import AboutOne from './containers/AboutOne/Loadable';
