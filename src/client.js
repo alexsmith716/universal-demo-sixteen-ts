@@ -12,6 +12,7 @@ import { AppContainer } from 'react-hot-loader';
 import asyncGetPromises from './utils/asyncGetPromises';
 import { Provider } from 'react-redux';
 import { RouterTrigger } from './components';
+import { ScrollToTop } from './components';
 import { routes } from './routes';
 import apiClient from './helpers/apiClient';
 import configureStore from './redux/configureStore';
@@ -90,6 +91,7 @@ const providers = {
         <AppContainer>
           <Provider store={store} {...providers}>
             <Router history={history}>
+              <ScrollToTop />
               <RouterTrigger triggerProp={pathname => triggerHooks(_routes, pathname, store)}>
                 {renderRoutes(_routes)}
               </RouterTrigger>
