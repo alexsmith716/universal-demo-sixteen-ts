@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import { Helmet } from 'react-helmet-async';
 
-// import { ClockHooksCustomJS } from '../../components';
-// import { ClockHooksCustomQ } from '../../components';
-// import { ClockHooks } from '../../components';
+import { ClockHooksCustom } from '../../components';
+import { ClockHooks } from '../../components';
 // import { Todo } from '../../components';
 
 import CatsForm from '../../components/widgets/CatsForm/CatsForm';
