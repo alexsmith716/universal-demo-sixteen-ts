@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 interface FooterProps {
   footer: string;
@@ -25,6 +26,11 @@ export const Footer = ({ footer,copyright,colorGoldLocal }: FooterProps) => {
           <div>Copyright &copy; {new Date().getFullYear()} · Election App {new Date().getFullYear()}</div>
           <div><span className={`fas fa-headphones fa-padding ${colorGoldLocal}`}></span><span className={`font-norwester ${colorGoldLocal}`}>Footer Headphones</span></div>
           <div>Don't Forget To Vote!</div>
+          <Link to='/'>Election App</Link>
+          <Link to='/about'>About</Link>
+          <Link to='/aboutone'>About One</Link>
+          <Link to='/abouttwo'>About Two</Link>
+          <Link to='/aboutthree'>About Three</Link>
         </div>
       </div>
     </div>

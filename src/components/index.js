@@ -10,6 +10,8 @@ import { FontsModal } from './modals/FontsModal';
 import { ClockHooksCustom } from './widgets/hooks/ClockHooksCustom';
 import { ClockHooks } from './widgets/hooks/ClockHooks';
 // import { DragAndDrop } from './widgets/hooks/DragAndDrop';
+// import { Todo } from './widgets/hooks/Todo';
+// import { ScrollToTop } from './ScrollToTop';
 
 export {
   Footer,
@@ -20,5 +22,7 @@ export {
   FontsModal,
   ClockHooksCustom,
   ClockHooks,
-  // DragAndDrop
+  // ScrollToTop,
+  // DragAndDrop,
+  // Todo,
 };
