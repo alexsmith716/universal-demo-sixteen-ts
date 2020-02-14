@@ -9,5 +9,3 @@ https://github.com/ReactTraining/react-router/tree/master/packages/react-router-
 
 @babel/plugin-syntax-dynamic-import
 @babel/plugin-proposal-dynamic-import
-
-fork-ts-checker-webpack-plugin
