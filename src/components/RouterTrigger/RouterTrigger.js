@@ -37,6 +37,7 @@ export class RouterTrigger extends Component {
   // invoked right before calling the 'render' method, both on initial 'mount' and subsequent 'updates'
   // it should return an object to update the state, or null to update nothing
   static getDerivedStateFromProps(props, state) {
+    console.log('>>>>>>>>>>>>>>>>>>>>>>>> YYYYY RouterTrigger > getDerivedStateFromProps() 222> props: ', props);
     // store 'withRouter' props 'location' in state 'locationState' to compare when props change
     const { locationState } = state;
     const { location: { pathname, search } } = props; // @withRouter
@@ -66,6 +67,7 @@ export class RouterTrigger extends Component {
   // SO, 'render()' is called twice but user won't see the intermediate state
   componentDidMount() {
     console.log('>>>>>>>>>>>>>>>>>>>>>>>> RouterTrigger > componentDidMount() <<<<<<<<<<<<<<<<<<<<<<<');
+    console.log('>>>>>>>>>>>>>>>>>>>>>>>> YYYYY RouterTrigger > componentDidMount() > this.props: ', this.props);
     this.mounted = true;
     this.triggerSafeSetState();
   }
@@ -97,6 +99,7 @@ export class RouterTrigger extends Component {
   // 'componentDidUpdate()' will not be invoked if 'shouldComponentUpdate()' returns false
   componentDidUpdate() {
     console.log('>>>>>>>>>>>>>>>>>>>>>>>> RouterTrigger > componentDidUpdate() <<<<<<<<<<<<<<<<<<<<<<<');
+    console.log('>>>>>>>>>>>>>>>>>>>>>>>> YYYYY RouterTrigger > componentDidUpdate() > this.props: ', this.props);
     this.triggerSafeSetState();
   }
 
@@ -144,6 +147,7 @@ export class RouterTrigger extends Component {
   }
 
   render() {
+    console.log('>>>>>>>>>>>>>>>>>>>>>>>> YYYYY RouterTrigger > render() > this.props: ', this.props);
     const { children, location } = this.props;
     const { previousLocation } = this.state;
 

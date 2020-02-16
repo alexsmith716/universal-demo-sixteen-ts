@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import { withRouter } from 'react-router';
+import { useSelector } from 'react-redux';
 import { renderRoutes } from 'react-router-config';
 import { Helmet, HelmetProvider } from 'react-helmet-async';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 import { Footer } from '../../components';
 import { InfoBar } from '../../components';
@@ -23,19 +22,11 @@ import config from '../../../config/config';
 // (store the previous value of the 'prop' in a state variable and then compare)
 // an update during rendering is exactly what 'getDerivedStateFromProps' has always been like conceptually
 
-const mapStateToProps = (state) => {
-  return {
-    online: state.online,
-    userAgent: state.device.userAgent,
-    isBot: state.device.isBot
-  };
-};
-
 // >>>>>>>>>>>>>>>>>>>>>>>> App > props:  {
 //   history: {
 //     createHref: [Function: createHref],
 //     action: 'POP',
-//     location: { pathname: '/', search: '', hash: '', state: undefined },
+//     location: { pathname: '/aboutfour', search: '', hash: '', state: undefined },
 //     push: [Function (anonymous)],
 //     replace: [Function (anonymous)],
 //     go: [Function (anonymous)],
@@ -44,8 +35,8 @@ const mapStateToProps = (state) => {
 //     listen: [Function (anonymous)],
 //     block: [Function (anonymous)]
 //   },
-//   location: { pathname: '/', search: '', hash: '', state: undefined },
-//   match: { path: '/', url: '/', params: {}, isExact: true },
+//   location: { pathname: '/aboutfour', search: '', hash: '', state: undefined },
+//   match: { path: '/', url: '/', params: {}, isExact: false },
 //   staticContext: {},
 //   route: {
 //     component: {
@@ -70,13 +61,27 @@ const mapStateToProps = (state) => {
 //   dispatch: [Function (anonymous)]
 // }
 
-
 export const App = (props) => {
 
-  // console.log('>>>>>>>>>>>>>>>>>>>>>>>> App > props: ', props);
+  console.log('>>>>>>>>>>>>>>>>>>>>>>>> App > props: ', props);
 
-  // const [prevRow, setPrevRow] = useState(null);
+  const online = useSelector(state => state.online);
+  const userAgent = useSelector(state => state.device.userAgent);
+  const isBot = useSelector(state => state.device.isBot);
+
   const styles = require('./styles/App.scss');
+
+  let location = useLocation();
+
+  const [prevPropsLocation, setPrevPropsLocation] = useState(location);
+
+  useEffect(() => {
+    console.log('>>>>>>>>>>>>>>>>>>>>>>>> App > useEffect() > useLocation() > location.pathname: ', location.pathname);
+    console.log('>>>>>>>>>>>>>>>>>>>>>>>> App > useEffect() > useLocation() > prevPropsLocation.pathname: ', prevPropsLocation.pathname);
+    if (location.pathname !== prevPropsLocation.pathname) {
+      console.log('>>>>>>>>>>>>>>>>>>>>>>>> App > useEffect() > useLocation()!!: ', location.pathname !== prevPropsLocation.pathname);
+    }
+  });
 
   return (
 
@@ -190,4 +195,4 @@ export const App = (props) => {
   );
 }
 
-export default connect(mapStateToProps)(App);
+export default App;
