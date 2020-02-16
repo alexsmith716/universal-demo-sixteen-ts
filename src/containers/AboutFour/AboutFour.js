@@ -20,7 +20,7 @@ class AboutFour extends Component {
 
     const { data, loading, load, error, errorResponse } = this.props;
 
-    console.log('>>>>>>>>>>>>>>>>>>>>>>>> AboutFour > this.props.data: ', this.props);
+    console.log('>>>>>>>>>>>>>>>>>>>>>>>> AboutFour > this.props: ', this.props);
 
     const aboutImageMain = require('../../theme/images/about-750-450.png');
     const aboutImageOurCustomers = require('../../theme/images/about-500-300.png');
