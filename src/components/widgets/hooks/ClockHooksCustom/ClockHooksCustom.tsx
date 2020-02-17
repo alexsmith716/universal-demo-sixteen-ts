@@ -8,10 +8,10 @@ import { useTimeElapsedHook } from '../../../../hooks/useTimeElapsedHook';
 export const ClockHooksCustom = () => {
 
   const [countA, setCountA] = useState(33);
-  useIntervalJS( () => { setCountA(countA + 1); } , 1000);
+  useIntervalJS(() => { setCountA(countA + 1); } , 1000);
 
   const [countB, setCountB] = useState(127);
-  useIntervalJS( () => { setCountB(countB + 1); } , 2000);
+  useIntervalJS(() => { setCountB(countB + 1); } , 2000);
 
   const [clickedCount, setClickedCount] = useState(0);
 

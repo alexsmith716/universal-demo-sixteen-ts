@@ -8,7 +8,7 @@ export function useTimeElapsedHook(initStartTime, initStartDelay) {
 
   // -------------------------------------------
 
-  useIntervalJS( () => { setStartTime(startTime + 1); }, intervalDelay);
+  useIntervalJS(() => { setStartTime(startTime + 1); }, intervalDelay);
 
   // -------------------------------------------
 

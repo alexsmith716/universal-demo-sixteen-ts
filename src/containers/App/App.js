@@ -12,16 +12,6 @@ import { FontsModal } from '../../components';
 
 import config from '../../../config/config';
 
-// https://github.com/reduxjs/react-redux/blob/master/docs/api/hooks.md
-// 'react-router-config': access 'props.route' inside the component
-// 'props.route': object is a reference to the object used to render and match
-
-// getDerivedStateFromProps:
-// in cases (i.e. implementing a <Transition> component), update the state right during rendering
-// React will re-run the component with updated state immediately after exiting the first render
-// (store the previous value of the 'prop' in a state variable and then compare)
-// an update during rendering is exactly what 'getDerivedStateFromProps' has always been like conceptually
-
 // >>>>>>>>>>>>>>>>>>>>>>>> App > props:  {
 //   history: {
 //     createHref: [Function: createHref],
@@ -35,7 +25,7 @@ import config from '../../../config/config';
 //     listen: [Function (anonymous)],
 //     block: [Function (anonymous)]
 //   },
-//   location: { pathname: '/aboutfour', search: '', hash: '', state: undefined },
+//   location: { pathname: '/aboutfour', search: '', hash: '', state: undefined, key: 'ac3df4' },
 //   match: { path: '/', url: '/', params: {}, isExact: false },
 //   staticContext: {},
 //   route: {
@@ -61,6 +51,15 @@ import config from '../../../config/config';
 //   dispatch: [Function (anonymous)]
 // }
 
+// https://reacttraining.com/blog/useEffect-is-not-the-new-componentDidMount/
+// https://reacttraining.com/blog/when-to-use-functions-in-hooks-dependency-array/
+// https://reacttraining.com/blog/reach-react-router-future/
+
+// https://github.com/ReactTraining/react-router/blob/master/packages/react-router/docs/api/Route.md
+
+// have to re-do / go over 'RouterTrigger'
+// and why so little mention/usage of 'renderRoutes/react-router-config' in ReactTraining?
+
 export const App = (props) => {
 
   console.log('>>>>>>>>>>>>>>>>>>>>>>>> App > props: ', props);
@@ -71,15 +70,20 @@ export const App = (props) => {
 
   const styles = require('./styles/App.scss');
 
-  let location = useLocation();
+  // const location = useLocation();
 
-  const [prevPropsLocation, setPrevPropsLocation] = useState(location);
+  const [prevPropsLocation, setPrevPropsLocation] = useState(props.location);
+
+  if (props.location.pathname !== prevPropsLocation.pathname) {
+    console.log('>>>>>>>>>>>>>>>>>>>>>>>> App > useEffect() > Router Location Changed?: ', props.location.pathname !== prevPropsLocation.pathname);
+  }
 
   useEffect(() => {
-    console.log('>>>>>>>>>>>>>>>>>>>>>>>> App > useEffect() > useLocation() > location.pathname: ', location.pathname);
+    console.log('>>>>>>>>>>>>>>>>>>>>>>>> App > useEffect() > useLocation() > props.location.pathname: ', props.location.pathname);
     console.log('>>>>>>>>>>>>>>>>>>>>>>>> App > useEffect() > useLocation() > prevPropsLocation.pathname: ', prevPropsLocation.pathname);
-    if (location.pathname !== prevPropsLocation.pathname) {
-      console.log('>>>>>>>>>>>>>>>>>>>>>>>> App > useEffect() > useLocation()!!: ', location.pathname !== prevPropsLocation.pathname);
+    if (props.location.pathname !== prevPropsLocation.pathname) {
+      console.log('>>>>>>>>>>>>>>>>>>>>>>>> App > useEffect() > setPrevPropsLocation(props.location) <<<<<<<<<<<<<<<<<<<<<<');
+      setPrevPropsLocation(props.location);
     }
   });
 
